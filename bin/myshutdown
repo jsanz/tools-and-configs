@@ -1,0 +1,22 @@
+#!/bin/sh
+
+#  ----------------------------------------------------------------------------
+#  "THE BEER-WARE LICENSE":
+#  <xurxosanz@gmail.com> wrote this file. As long as you retain this notice you
+#  can do whatever you want with this stuff. If we meet some day, and you think
+#  this stuff is worth it, you can buy me a beer in return.
+#  ----------------------------------------------------------------------------
+
+# Why: provide a confirmation dialog to exit i3
+# Require: zenity, i3
+# Config: you have to add yourself to the sudo config, to avoid asking for
+#         a password for example adding
+#
+#         youruser ALL=NOPASSWD: /sbin/shutdown
+#
+
+zenity --question --text '¿Apagar el equipo?'
+export shut=$?
+if [ $shut -eq 0 ] ; then
+	sudo shutdown -h now	
+fi
