@@ -59,10 +59,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+d split h
+bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+k split v
+bindsym $mod+l split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+u fullscreen
@@ -90,11 +90,11 @@ bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace www
-bindsym $mod+7 workspace term
-bindsym $mod+8 workspace file
-bindsym $mod+9 workspace im
-bindsym $mod+0 workspace mail
+bindsym $mod+6 workspace "6: www"
+bindsym $mod+7 workspace "7: term"
+bindsym $mod+8 workspace "8: file"
+bindsym $mod+9 workspace "9: im"
+bindsym $mod+0 workspace "10: mail"
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -102,11 +102,11 @@ bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace www
-bindsym $mod+Shift+7 move container to workspace term
-bindsym $mod+Shift+8 move container to workspace file
-bindsym $mod+Shift+9 move container to workspace im
-bindsym $mod+Shift+0 move container to workspace mail
+bindsym $mod+Shift+6 move container to workspace "6: www"
+bindsym $mod+Shift+7 move container to workspace "7: term"
+bindsym $mod+Shift+8 move container to workspace "8: file"
+bindsym $mod+Shift+9 move container to workspace "9: im"
+bindsym $mod+Shift+0 move container to workspace "10: mail"
 
 # move on next and previous workspaces
 bindsym $mod+Control+Left workspace prev
@@ -183,25 +183,26 @@ for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
 
 # Assign apps to workspaces
-assign [class="Skype"] im
-assign [class="Empathy"] im
-assign [class="Rhythmbox"] im
-assign [class="Thunderbird"] mail
-assign [class="Pcmanfm"] file
-assign [class="Nautilus"] file
+assign [class="Skype"] 9: im
+assign [class="Empathy"] 9: im
+assign [class="Rhythmbox"] 9: im
+assign [class="Thunderbird"] 10: mail
+assign [class="Pcmanfm"] 8: file
+assign [class="Nautilus"] 8: file
 
 # workspaces to outputs
 
 # auto starts
 # a wallpaper
+exec feh --bg-scale /home/jsanz/.config/i3/wallpaper.jpg 
 # services: conky and dropbox
-# exec conky
+exec conky
 exec dropbox start
 # start apps: browser, im, music and a terminal at "term" workspace
-exec empathy
+#exec empathy
 #exec skype
 exec radiotray 
-exec --no-startup-id i3-msg 'workspace term; exec terminator; workspace www'
+exec --no-startup-id i3-msg 'workspace 7: term; exec terminator; workspace 6: www'
 exec unclutter
-#exec --no-startup-id i3-msg 'workspace nautilus; exec nautilus --no-desktop; workspace www'
-exec --no-startup-id i3-msg 'workspace www; exec google-chrome'
+#exec --no-startup-id i3-msg 'workspace nautilus; exec nautilus --no-desktop; workspace "6: www"'
+exec --no-startup-id i3-msg 'workspace 6: www; exec google-chrome'
