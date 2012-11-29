@@ -28,8 +28,6 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# kill focused window
-bindsym $mod+Shift+period kill
 
 # start dmenu (a program launcher)
 bindsym $mod+e exec dmenu_run
@@ -112,12 +110,6 @@ bindsym $mod+Shift+0 move container to workspace "10: mail"
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
-# reload the configuration file
-bindsym $mod+Shift+j reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+p restart
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+ntilde exec "i3-nagbar -t warning -m '¿Cerrar sesión?' -b 'Yes, exit i3' 'i3-msg exit'"
 #-cesize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -162,14 +154,22 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
+# kill focused window
+bindsym $mod+Shift+period kill
 # Close session
 bindsym $mod+Shift+ntilde exec /home/jsanz/bin/myexiti3 
-
+# supend and lock
+bindsym $mod+Shift+p exec /home/jsanz/bin/mylockandsuspend
 # Shutdown the computer (user has NOPASSWD set up at sudo config for this command)
-#bindsym $mod+Control+ntilde exec "i3-nagbar -t warning -m '¿Apagar el equipo?' -b 'Sí' 'sudo shutdown -h now'"
-bindsym $mod+Control+ntilde exec /home/jsanz/bin/myshutdown
+bindsym $mod+Shift+y exec /home/jsanz/bin/myshutdown
 
+# Lock screen
 bindsym $mod+Control+l exec i3lock -c 000000
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+q restart
+# reload the configuration file
+bindsym $mod+Shift+j reload
 
 # app settings
 
