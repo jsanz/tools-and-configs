@@ -4,7 +4,7 @@ general {
 }
 
 order += "disk /"
-order += "run_watch DHCP"
+order += "disk /home"
 order += "wireless eth1"
 order += "ethernet eth0"
 order += "battery 1"
@@ -26,18 +26,18 @@ battery 1 {
         format = "%status %percentage %remaining"
 }
 
-run_watch DHCP {
-        pidfile = "/var/run/dhclient*.pid"
-}
-
 time {
         format = "%d/%m %H:%M"
 }
 
 load {
-        format = "%1min"
+        format = "load %1min"
 }
 
 disk "/" {
-        format = "%free (or: %percentage_used used, %percentage_used_of_avail used of avail, %percentage_free free, %percentage_avail avail)"
+        format = "root %avail / %total"
+}
+
+disk "/home" {
+        format = "home %avail / %total"
 }
