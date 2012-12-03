@@ -200,6 +200,7 @@ assign [class="Nautilus"] file
 # exec conky
 exec dropbox start
 exec nm-applet
+exec hamster-applet
 # start apps: browser, im, music and a terminal at "term" workspace
 exec empathy
 exec skype
