@@ -1,7 +1,0 @@
-#!/bin/sh
-zenity --question --text '¿Suspender el equipo?'
-export shut=$?
-if [ $shut -eq 0 ] ; then
-	i3lock -c 000000 && sudo pm-suspend
-fi
-

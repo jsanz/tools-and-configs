@@ -158,11 +158,11 @@ bindsym $mod+minus scratchpad show
 # kill focused window
 bindsym $mod+Shift+period kill
 # Close session
-bindsym $mod+Shift+ntilde exec /home/jsanz/bin/myexiti3 
+bindsym $mod+Shift+ntilde exec /home/jsanz/bin/i3-power exit
 # supend and lock
-bindsym $mod+Shift+p exec /home/jsanz/bin/mylockandsuspend
+bindsym $mod+Shift+p exec /home/jsanz/bin/i3-power suspend
 # Shutdown the computer (user has NOPASSWD set up at sudo config for this command)
-bindsym $mod+Shift+y exec /home/jsanz/bin/myshutdown
+bindsym $mod+Shift+y exec /home/jsanz/bin/i3-power shutdown
 
 # Lock screen
 bindsym $mod+Control+l exec i3lock -c 000000
