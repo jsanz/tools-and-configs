@@ -188,6 +188,7 @@ for_window [class="Rhythmbox"] floating enable
 for_window [class="Empathy"] floating enable
 for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
+for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Tsclient"] floating enable
 for_window [class="Hamster-indicator"] floating enable
 
