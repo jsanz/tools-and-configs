@@ -146,6 +146,11 @@ bar {
 
 # My settings
 
+# Volume keys
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
 # start a file manager
 #bindsym $mod+z exec pcmanfm
 bindsym $mod+z exec nautilus --no-desktop
@@ -183,7 +188,9 @@ for_window [class="Rhythmbox"] floating enable
 for_window [class="Empathy"] floating enable
 for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
+for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Tsclient"] floating enable
+for_window [class="Hamster-indicator"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
