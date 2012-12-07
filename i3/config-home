@@ -193,10 +193,10 @@ assign [class="Rhythmbox"] 9: im
 # a wallpaper
 exec feh --bg-scale /home/jsanz/.config/i3/wallpaper.jpg 
 # services
-exec conky
 exec dropbox start
-exec radiotray 
 exec unclutter
+exec sleep 10; radiotray 
+exec sleep 30; conky
 #exec empathy
 # start apps: browser, im, music and a terminal at "term" workspace
 exec --no-startup-id i3-msg 'workspace 6: www; exec google-chrome'
