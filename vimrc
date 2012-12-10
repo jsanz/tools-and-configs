@@ -398,6 +398,7 @@ endfunction
 "
 
 set number
+set mouse=a
 
 " Pathogen plugins
 call pathogen#infect()
