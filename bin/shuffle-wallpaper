@@ -1,0 +1,30 @@
+#!/bin/sh
+
+#  ----------------------------------------------------------------------------
+#  "THE BEER-WARE LICENSE":
+#  <xurxosanz@gmail.com> wrote this file. As long as you retain this notice you
+#  can do whatever you want with this stuff. If we meet some day, and you think
+#  this stuff is worth it, you can buy me a beer in return.
+#  ----------------------------------------------------------------------------
+
+# Why: I like to shuffle my desktop backdrop over a set of images of my choice
+# Require: a folder of nice wallpapers and the feh command line tool
+# Conifg: set up your WALL_DIR and place this script on your crontab
+
+WALL_DIR=/home/jsanz/.config/wall_dir
+
+# END OF CONFIGURATION
+
+cd $WALL_DIR
+
+# Num of images
+num=`ls *.jpg | wc -l`
+
+# Random between 1 and that number
+val=`shuf -i 1-$num -n 1`
+
+# Get the image file name
+img=`ls | head -n $val | tail -n1`
+
+# Set the background
+feh --bg-scale $img

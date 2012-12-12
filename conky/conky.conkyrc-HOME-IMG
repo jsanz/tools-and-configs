@@ -1,0 +1,18 @@
+#
+# Conky para pintar una imagen
+#
+
+own_window no
+background yes
+
+# Log en la consola
+out_to_console no 
+
+# Intervalo de actualización (segundos)
+update_interval 1000.0
+
+# Alineación del texto
+alignment top_left
+
+TEXT
+${image /home/jsanz/.config/i3/dvorak.png -p 0,480}

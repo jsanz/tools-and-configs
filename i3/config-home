@@ -197,6 +197,7 @@ exec dropbox start
 exec unclutter
 exec sleep 10; radiotray 
 exec sleep 30; conky
+exec sleep 30; conky -c /home/jsanz/.conkyrcIMG
 #exec empathy
 # start apps: browser, im, music and a terminal at "term" workspace
 exec --no-startup-id i3-msg 'workspace 6: www; exec google-chrome'
