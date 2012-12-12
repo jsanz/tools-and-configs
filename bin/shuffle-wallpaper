@@ -7,24 +7,31 @@
 #  this stuff is worth it, you can buy me a beer in return.
 #  ----------------------------------------------------------------------------
 
-# Why: I like to shuffle my desktop backdrop over a set of images of my choice
-# Require: a folder of nice wallpapers and the feh command line tool
-# Conifg: set up your WALL_DIR and place this script on your crontab
+# Why:       I like to shuffle my desktop backdrop over a set of images of my choice
+# Require:   A folder of nice wallpapers and the feh command line tool
+# Conifg:    set up your WALL_DIR and INTERVAL and run this script
+#            when your system starts
 
 WALL_DIR=/home/jsanz/.config/wall_dir
+INTERVAL=30m
 
 # END OF CONFIGURATION
 
 cd $WALL_DIR
 
-# Num of images
-num=`ls *.jpg | wc -l`
+while true; do
+  # Num of images
+  num=`ls *.jpg | wc -l`
 
-# Random between 1 and that number
-val=`shuf -i 1-$num -n 1`
+  # Random between 1 and that number
+  val=`shuf -i 1-$num -n 1`
 
-# Get the image file name
-img=`ls | head -n $val | tail -n1`
+  # Get the image file name
+  img=`ls *.jpg | head -n $val | tail -n1`
 
-# Set the background
-feh --bg-scale $img
+  # Set the background
+  feh --bg-scale $img
+
+  # Sleep
+  sleep $INTERVAL
+done
