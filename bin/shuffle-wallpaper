@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #  ----------------------------------------------------------------------------
 #  "THE BEER-WARE LICENSE":
@@ -12,25 +12,18 @@
 # Conifg:    set up your WALL_DIR and INTERVAL and run this script
 #            when your system starts
 
-WALL_DIR=/home/jsanz/.config/wall_dir
+if [ -z $WALL_DIR]; then
+  WALL_DIR=/home/jsanz/.config/wall_dir
+fi
+
 INTERVAL=30m
 
 # END OF CONFIGURATION
 
-cd $WALL_DIR
-
 while true; do
-  # Num of images
-  num=`ls *.jpg | wc -l`
-
-  # Random between 1 and that number
-  val=`shuf -i 1-$num -n 1`
-
-  # Get the image file name
-  img=`ls *.jpg | head -n $val | tail -n1`
 
   # Set the background
-  feh --bg-scale $img
+  feh --bg-scale $(ls $WALL_DIR/*.{jpg,png} | shuf -n1)
 
   # Sleep
   sleep $INTERVAL
