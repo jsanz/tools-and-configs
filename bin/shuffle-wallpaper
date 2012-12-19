@@ -12,7 +12,10 @@
 # Conifg:    set up your WALL_DIR and INTERVAL and run this script
 #            when your system starts
 
-WALL_DIR=/home/jsanz/.config/wall_dir
+if [ -z "$WALL_DIR" ]; then
+  WALL_DIR=/home/jsanz/.config/wall_dir
+fi
+
 INTERVAL=30m
 
 # END OF CONFIGURATION
