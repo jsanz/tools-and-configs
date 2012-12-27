@@ -151,9 +151,17 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
+# Brightness keys
+bindsym XF86MonBrightnessUp exec /home/jsanz/bin/brightness 1
+bindsym XF86MonBrightnessDown exec /home/jsanz/bin/brightness -1
+
 # start a file manager
 #bindsym $mod+z exec pcmanfm
 bindsym $mod+z exec nautilus --no-desktop
+
+# Show a simple calendar
+bindsym $mod+Shift+c exec zenity --calendar
+
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -195,6 +203,7 @@ for_window [class="Hamster-indicator"] floating enable
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
 assign [class="Empathy"] 9: im
+assign [class="Xchat"] 9: im
 assign [class="Rhythmbox"] 9: im
 assign [class="Thunderbird"] 10: mail
 

@@ -408,4 +408,24 @@ set shiftwidth=2
 set tabstop=2
 
 " Linebreak on 500 characters
-set tw=80
+set tw=500
+
+autocmd BufEnter *.txt setl tx ts=4 sw=4 fo+=n2a tw=80
+autocmd BufEnter *.rst setl tx ts=4 sw=4 fo+=n2a tw=80
+
+" spell checking
+" set spell spelllang=en_us
+" zg to add word to word list
+" zw to reverse
+" zug to remove word from word list
+" z= to get list of possibilities
+set spellfile=~/.vim/spellfile.add
+
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
