@@ -200,6 +200,7 @@ for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Tsclient"] floating enable
 for_window [class="Hamster-indicator"] floating enable
 for_window [class="Gnome-alsamixer"] floating enable
+for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
