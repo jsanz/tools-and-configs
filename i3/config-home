@@ -31,7 +31,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu (a program launcher)
-bindsym $mod+e exec dmenu_run
+bindsym $mod+u exec dmenu_run
 
 # change focus
 bindsym $mod+r focus left
@@ -64,7 +64,7 @@ bindsym $mod+h split v
 bindsym $mod+v split h
 
 # enter fullscreen mode for the focused container
-bindsym $mod+u fullscreen
+bindsym $mod+i fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+o layout stacking
@@ -202,3 +202,4 @@ exec sleep 30; conky -c /home/jsanz/.conkyrcIMG
 #exec empathy
 # start apps: browser, im, music and a terminal at "term" workspace
 exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
+exec /home/jsanz/src/jorgesanz.net/sync.sh &>> /tmp/update-site.log
