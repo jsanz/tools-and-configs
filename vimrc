@@ -410,8 +410,8 @@ set tabstop=2
 " Linebreak on 500 characters
 set tw=500
 
-autocmd BufEnter *.txt setl tx ts=4 sw=4 fo+=n2a tw=80
-autocmd BufEnter *.rst setl tx ts=4 sw=4 fo+=n2a tw=80
+"autocmd BufEnter *.txt setl tx ts=4 sw=4 fo+=n2a tw=80
+"autocmd BufEnter *.rst setl tx ts=4 sw=4 fo+=n2a tw=80
 
 " spell checking
 " set spell spelllang=en_us

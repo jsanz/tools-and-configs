@@ -31,7 +31,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu (a program launcher)
-bindsym $mod+e exec dmenu_run
+bindsym $mod+u exec dmenu_run
 
 # change focus
 bindsym $mod+r focus left
@@ -64,7 +64,7 @@ bindsym $mod+l split h
 bindsym $mod+h split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+u fullscreen
+bindsym $mod+i fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+o layout stacking
@@ -199,6 +199,7 @@ for_window [class="File-roller"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Tsclient"] floating enable
 for_window [class="Hamster-indicator"] floating enable
+for_window [class="Gnome-alsamixer"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
