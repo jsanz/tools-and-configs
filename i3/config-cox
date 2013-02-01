@@ -162,6 +162,8 @@ bindsym $mod+z exec nautilus --no-desktop
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
 
+# Start a browser
+bindsym $mod+g exec sensible-browser
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -193,6 +195,7 @@ for_window [class="Google-chrome"] border 1pixel
 
 # Floating windows
 for_window [class="Rhythmbox"] floating enable
+for_window [class="Pidgin"] floating enable
 for_window [class="Empathy"] floating enable
 for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
@@ -204,6 +207,7 @@ for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
+assign [class="Pidgin"] 9: im
 assign [class="Empathy"] 9: im
 assign [class="Xchat"] 9: im
 assign [class="Rhythmbox"] 9: im
@@ -213,14 +217,15 @@ assign [class="Thunderbird"] 10: mail
 # auto starts
 # services: conky and dropbox
 exec shuffle-wallpaper
-exec conky
-exec conky -c ~/.conkyrcIMG
 exec dropbox start
 exec nm-applet
-exec hamster-indicator
-exec touchpad-indicator
+#exec hamster-indicator
+#exec touchpad-indicator
 # start apps: browser, im, music and a terminal at "term" workspace
-exec empathy
+#exec empathy
+exec pidgin 
 exec skype
 exec radiotray 
-exec xchat
+#exec xchat
+exec conky
+exec conky -c ~/.conkyrcIMG
