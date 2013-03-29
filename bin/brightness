@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#  ----------------------------------------------------------------------------
+#  "THE BEER-WARE LICENSE":
+#  <xurxosanz@gmail.com> wrote this file. As long as you retain this notice you
+#  can do whatever you want with this stuff. If we meet some day, and you think
+#  this stuff is worth it, you can buy me a beer in return.
+#  ----------------------------------------------------------------------------
+
+# Why: Provide a system wide command to change laptop brightess 
+# Require: write permissions on brightness control file
+#
+# Config: Set up the folder where your working brightness files are
+
+[ -z $1 ] && echo "Need a number positive or negative to change screen brightness, exiting .." && exit
+
+BFOLDER=/sys/class/backlight/acpi_video0
+
+NEWVAL=$[`cat $BFOLDER/actual_brightness` + $1 ]
+
+[[ $NEWVAL -lt 0 ]] && echo "Below 0, exiting ..." && exit
+[[ $NEWVAL -gt $[`cat $BFOLDER/max_brightness`] ]] && echo "Over maximum, exiting..." && exit
+
+echo $NEWVAL | tee $BFOLDER/brightness
+

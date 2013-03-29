@@ -16,8 +16,10 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
 #font xft:DejaVu Sans Mono 8
 font xft:SourceCodePro Sans Regular 9
+
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
@@ -92,8 +94,8 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace "9: im"
-bindsym $mod+0 workspace "10: mail"
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -104,8 +106,8 @@ bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace "9: im"
-bindsym $mod+Shift+0 move container to workspace "10: mail"
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # move on next and previous workspaces
 bindsym $mod+Control+Left workspace prev
@@ -147,13 +149,15 @@ bar {
 # My settings
 
 # Volume keys
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+#bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+#bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym Shift+F9 exec amixer -q -c 1 set Master 2dB- unmute
+bindsym Shift+F10 exec amixer -q -c 1 set Master 2dB+ unmute
 
 # Brightness keys
-bindsym XF86MonBrightnessUp exec /home/jsanz/bin/brightness 1
-bindsym XF86MonBrightnessDown exec /home/jsanz/bin/brightness -1
+#bindsym XF86MonBrightnessUp exec /home/jsanz/bin/brightness 1
+#bindsym XF86MonBrightnessDown exec /home/jsanz/bin/brightness -1
 
 # start a file manager
 #bindsym $mod+z exec pcmanfm
@@ -162,7 +166,7 @@ bindsym $mod+z exec nautilus --no-desktop
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
 
-# Start a browser
+# Open a browser
 bindsym $mod+g exec sensible-browser
 
 # Make the currently focused window a scratchpad
@@ -192,40 +196,29 @@ bindsym $mod+Shift+j reload
 
 # Make all google-chrome use a 1-pixel border:
 for_window [class="Google-chrome"] border 1pixel
+for_window [class="X-www-browser"] border 1pixel
 
 # Floating windows
 for_window [class="Rhythmbox"] floating enable
 for_window [class="Pidgin"] floating enable
-for_window [class="Empathy"] floating enable
 for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
-for_window [class="Tsclient"] floating enable
-for_window [class="Hamster-indicator"] floating enable
 for_window [class="Gnome-alsamixer"] floating enable
 for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 
 # Assign apps to workspaces
-assign [class="Skype"] 9: im
-assign [class="Pidgin"] 9: im
-assign [class="Empathy"] 9: im
-assign [class="Xchat"] 9: im
-assign [class="Rhythmbox"] 9: im
-assign [class="Thunderbird"] 10: mail
-
+#assign [class="Skype"] 9: im
 
 # auto starts
 # services: conky and dropbox
+exec --no-startup-id ~/bin/dbusregister.sh
 exec shuffle-wallpaper
+exec conky
 exec dropbox start
 exec nm-applet
-#exec hamster-indicator
-#exec touchpad-indicator
+exec touchpad-indicator
 # start apps: browser, im, music and a terminal at "term" workspace
-#exec empathy
-exec pidgin 
-exec skype
+exec pidgin
 exec radiotray 
-#exec xchat
-exec conky
-exec conky -c ~/.conkyrcIMG
+exec google-chrome
