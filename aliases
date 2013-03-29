@@ -23,7 +23,7 @@ alias mkdir='mkdir -pv'
 # install  colordiff package :)
 alias diff='colordiff'
 
-alias mount='mount |column -t'
+alias mounts='mount |column -t'
 
 # handy short cuts #
 alias h='history'
