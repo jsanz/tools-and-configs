@@ -15,4 +15,4 @@ update_interval 1000.0
 alignment top_left
 
 TEXT
-${image /home/jsanz/.config/i3/dvorak.png -p 0,430}
+${image /home/jsanz/.config/i3/dvorak.png -p 350,480}

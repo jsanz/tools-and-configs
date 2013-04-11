@@ -432,4 +432,10 @@ highlight SpellLocal term=underline cterm=underline
 
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+:nmap ; :CtrlPBuffer<CR>
 
+" Powerline
+let g:Powerline_symbols = 'fancy'
+
+" NERDTree
+:nmap \e :NERDTreeToggle<CR>
