@@ -146,9 +146,21 @@ bar {
 
 # My settings
 
+# Volume keys
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
 # start a file manager
 #bindsym $mod+z exec pcmanfm
-bindsym $mod+z exec nautilus --no-desktop
+bindsym $mod+Shift+z exec nautilus --no-desktop
+bindsym $mod+z exec xfe
+
+# Show calendar
+bindsym $mod+c exec zenity --calendar
+
+# Open Browser
+bindsym $mod+g exec sensible-browser
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -179,15 +191,17 @@ for_window [class="Google-chrome"] border 1pixel
 
 # Floating windows
 for_window [class="Rhythmbox"] floating enable
+for_window [class="Pidgin"] floating enable
 for_window [class="Empathy"] floating enable
 for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
 
 # Assign apps to workspaces
-assign [class="Skype"] 0
-assign [class="Empathy"] 0
-assign [class="Rhythmbox"] 0
+assign [class="Skype"] 10
+assign [class="Pidgin"] 10
+assign [class="Empathy"] 10
+assign [class="Rhythmbox"] 10
 
 # auto starts
 # a wallpaper
@@ -199,7 +213,8 @@ exec unclutter
 exec radiotray 
 exec sleep 30; conky
 exec sleep 30; conky -c /home/jsanz/.conkyrcIMG
+exec pidgin
 #exec empathy
 # start apps: browser, im, music and a terminal at "term" workspace
 exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
-exec /home/jsanz/src/jorgesanz.net/sync.sh &>> /tmp/update-site.log
+exec nohup /home/jsanz/src/jorgesanz.net/sync.sh &>> /tmp/update-site.log
