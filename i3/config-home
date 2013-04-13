@@ -159,6 +159,10 @@ bindsym $mod+z exec xfe
 # Show calendar
 bindsym $mod+c exec zenity --calendar
 
+# Calculator and sound mixer
+bindsym XF86Calculator exec gnome-calculator
+bindsym XF86Mail exec gnome-alsamixer
+
 # Open Browser
 bindsym $mod+g exec sensible-browser
 
@@ -196,6 +200,9 @@ for_window [class="Empathy"] floating enable
 for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
+for_window [class="processing-core-PApplet"] floating enable
+for_window [class="Gnome-calculator"] floating enable
+for_window [class="Gnome-alsamixer"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 10
