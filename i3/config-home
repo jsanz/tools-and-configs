@@ -154,7 +154,7 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 # start a file manager
 #bindsym $mod+z exec pcmanfm
 bindsym $mod+Shift+z exec nautilus --no-desktop
-bindsym $mod+z exec xfe
+bindsym $mod+z exec thunar 
 
 # Show calendar
 bindsym $mod+c exec zenity --calendar
@@ -203,6 +203,7 @@ for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="processing-core-PApplet"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gnome-alsamixer"] floating enable
+for_window [class="Arista-gtk"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 10
@@ -220,8 +221,8 @@ exec unclutter
 exec radiotray 
 exec sleep 30; conky
 exec sleep 30; conky -c /home/jsanz/.conkyrcIMG
-exec pidgin
+#exec pidgin
 #exec empathy
 # start apps: browser, im, music and a terminal at "term" workspace
 exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
-exec nohup /home/jsanz/src/jorgesanz.net/sync.sh &>> /tmp/update-site.log
+exec nohup /home/jsanz/bin/sync-web &>> /tmp/update-site.log
