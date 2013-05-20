@@ -162,7 +162,7 @@ bindsym XF86Mail exec gnome-alsamixer
 # start a file manager
 #bindsym $mod+z exec pcmanfm
 bindsym $mod+Shift+z exec nautilus --no-desktop
-bindsym $mod+z exec xfe
+bindsym $mod+z exec thunar 
 
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
@@ -211,6 +211,7 @@ for_window [class="Gnome-alsamixer"] floating enable
 for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Audacious"] floating enable
+for_window [class="gnome-keyring-prompt-3"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
