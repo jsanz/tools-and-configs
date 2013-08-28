@@ -59,3 +59,6 @@ alias wget='wget -c'
 
 ## ttytter replies
 alias twreplies='ttytter -norc -runcommand=/re | tail -n 5'
+
+## small web server
+alias wwwserver='python -m SimpleHTTPServer'

@@ -31,7 +31,7 @@ use_spacer right
 use_xft yes
 
 # Fuente Xft (solo si xft esta activado)
-xftfont DejaVu Sans Mono:size=9 
+xftfont DejaVu Sans Mono:size=11 
 #Monospace:size=8
 #xftfont Bitstream Vera Sans Mono:size=9
 #xftfont Terminus:size=8

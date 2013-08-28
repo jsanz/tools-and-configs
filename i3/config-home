@@ -165,6 +165,7 @@ bindsym XF86Mail exec gnome-alsamixer
 
 # Open Browser
 bindsym $mod+g exec sensible-browser
+bindsym $mod+Shift+g exec google-chrome --incognito
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -216,11 +217,12 @@ assign [class="Rhythmbox"] 10
 # exec feh --bg-scale /home/jsanz/.config/i3/wallpaper.jpg 
 exec /home/jsanz/bin/shuffle-wallpaper
 # services
-exec dropbox start
+#exec dropbox start
+exec copy-agent
 exec unclutter
 exec radiotray 
 exec sleep 30; conky
-exec sleep 30; conky -c /home/jsanz/.conkyrcIMG
+#exec sleep 30; conky -c /home/jsanz/.conkyrcIMG
 #exec pidgin
 #exec empathy
 # start apps: browser, im, music and a terminal at "term" workspace
