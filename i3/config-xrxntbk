@@ -161,7 +161,8 @@ bindsym Shift+F10 exec amixer -q -c 1 set Master 2dB+ unmute
 
 # start a file manager
 #bindsym $mod+z exec pcmanfm
-bindsym $mod+z exec nautilus --no-desktop
+bindsym $mod+Shift+z exec nautilus --no-desktop
+bindsym $mod+z exec thunar
 
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
@@ -215,9 +216,11 @@ for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 exec --no-startup-id ~/bin/dbusregister.sh
 exec shuffle-wallpaper
 exec conky
+exec unclutter
 exec dropbox start
 exec nm-applet
 exec touchpad-indicator
+#
 # start apps: browser, im, music and a terminal at "term" workspace
 exec pidgin
 exec radiotray 

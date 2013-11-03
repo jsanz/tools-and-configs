@@ -169,6 +169,7 @@ bindsym $mod+Shift+c exec zenity --calendar
 
 # Start a browser
 bindsym $mod+g exec sensible-browser
+bindsym $mod+Shift+g exec google-chrome --incognito
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -200,18 +201,19 @@ for_window [class="Google-chrome"] border 1pixel
 
 # Floating windows
 for_window [class="Rhythmbox"] floating enable
-for_window [class="Pidgin"] floating enable
+#for_window [class="Pidgin"] floating enable
 for_window [class="Empathy"] floating enable
-for_window [class="Skype"] floating enable
+#for_window [class="Skype"] floating enable
 for_window [class="File-roller"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Tsclient"] floating enable
 for_window [class="Hamster-indicator"] floating enable
 for_window [class="Gnome-alsamixer"] floating enable
-for_window [class="Thunderbird" instance="Msgcompose"] floating enable
+#for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [class="gnome-keyring-prompt-3"] floating enable
+for_window [class="Gtk-recordmydesktop"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
@@ -222,18 +224,27 @@ assign [class="Rhythmbox"] 9: im
 assign [class="Thunderbird"] 10: mail
 
 
-# auto starts
-# services: conky and dropbox
+# -- AUTO STARTS ---
+
+# Wallpaper
 exec shuffle-wallpaper
-exec dropbox start
+#exec feh --bg-scale ~/.config/wallpaper 
+
+# Cloud storage
+#exec dropbox start
+exec /home/jsanz/bin/copy-agent
+
+# Indicators
 exec nm-applet
 #exec hamster-indicator
-#exec touchpad-indicator
-# start apps: browser, im, music and a terminal at "term" workspace
+exec touchpad-indicator
+
+# Messaging
 #exec empathy
 exec pidgin 
 exec skype
-exec radiotray 
-#exec xchat
+exec xchat
+
+# Multimedia
 exec conky
-exec conky -c ~/.conkyrcIMG
+#exec radiotray 

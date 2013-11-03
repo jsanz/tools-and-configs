@@ -64,7 +64,7 @@ own_window_colour white
 
 
 # Alineación del texto
-alignment top_right
+alignment top_left
 
 
 # Separación de los bordes del escritorio
@@ -81,7 +81,6 @@ gap_y 37
 # Todo lo que aparece partir de 'TEXT' se renderiza en pantalla
 #${color white}
 #${time %A %e/%m · %R} · uptime: ${uptime_short}
-
 TEXT
 ${color orange}CPU ${hr 2}$color
 ${freq}MHz   Load: ${loadavg}   Temp: ${acpitemp}
