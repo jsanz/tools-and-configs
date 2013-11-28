@@ -1,0 +1,55 @@
+#!/bin/sh
+
+OUTPUTS=`xrandr -q | grep " connected" | sed -e "s/\ .*//g"`
+
+OPT="MON" 
+
+case $OPT in
+
+  "MON")
+
+    # SOLO MONITOR
+    echo "Solo monitor"
+    xrandr --output LVDS1 --off
+    xrandr --output HDMI1 --auto --primary
+    ;;
+
+  "POR")
+
+    # SOLO PORTATIL
+    echo "Solo portatil"
+    xrandr --output LVDS1 --auto --primary
+    xrandr --output HDMI1 --off
+    ;;
+
+  "BOTH")
+
+    #LAS DOS PANTALLAS, PORTATIL A LA IZQUIERDA
+    echo "Portátil y monitor"
+    xrandr --output LVDS1 --auto --primary
+    xrandr --output VGA1 --left-of LVDS1
+    ;;
+
+  "*")
+
+    echo "Nothing to do with $OPT"
+    ;;
+
+esac
+
+exit 0
+
+# OTRAS COSAS
+#feh --bg-scale /home/jsanz/.config/i3/wallpaper.jpg
+
+#i3-msg 'workspace "9: im" output LVDS1'
+#i3-msg 'workspace "10: mail" output LVDS1'
+
+# workspaces to outputs
+#i3-msg 'workspace "mail" output LVDS1'
+#i3-msg 'workspace "im"   output LVDS1'
+#i3-msg 'workspace "www"  output VGA1'
+#i3-msg 'workspace "term" output VGA1'
+#i3-msg 'workspace "file" output VGA1'
+
+
