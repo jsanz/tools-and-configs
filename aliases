@@ -58,7 +58,15 @@ alias chgrp='chgrp --preserve-root'
 alias wget='wget -c'
 
 ## ttytter replies
-alias twreplies='ttytter -norc -runcommand=/re | tail -n 5'
+alias twreplies='ttytter -norc -ssl -runcommand=/re | tail -n 5'
 
 ## small web server
 alias wwwserver='python -m SimpleHTTPServer'
+
+alias cpufreqset='sudo cpufreq-set -c 0 -r -g'
+alias kill-daemon='kill -9 `pgrep zeitgeist-daemo`'
+alias svi='sudo vi'
+
+alias watcher-sphinx-mydocs='watcher-sphinx /home/jsanz/docs/sphinx-docs /home/jsanz/Copy/sphinx-docs-source'
+
+alias ..='cd ..'
