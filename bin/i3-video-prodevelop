@@ -26,8 +26,10 @@ case $OPT in
 
     #LAS DOS PANTALLAS, PORTATIL A LA IZQUIERDA
     echo "Portátil y monitor"
-    xrandr --output LVDS1 --auto --primary
-    xrandr --output VGA1 --left-of LVDS1
+    #xrandr --output LVDS1 --auto --primary --pos 1900x432
+    #xrandr --output HDMI1 --left-of LVDS1
+    xrandr --output HDMI1 --auto --primary
+    xrandr --output LVDS1 --right-of HDMI1 --pos 1900x432
     ;;
 
   "*")

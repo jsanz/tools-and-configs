@@ -1,6 +1,8 @@
 #
+#
 # UBUNTU-CONKY
-# 
+
+#
 
 # Ejecutarlo en su propia ventana en lugar de usar el escritorio (requerido con nautilus)
 
@@ -64,7 +66,7 @@ own_window_colour white
 
 
 # Alineación del texto
-alignment top_right
+alignment top_left
 
 
 # Separación de los bordes del escritorio
@@ -84,7 +86,8 @@ gap_y 37
 
 TEXT
 ${color orange}CPU ${hr 2}$color
-${freq}MHz   Load: ${loadavg}   Temp: ${acpitemp}
+${freq}MHz  Load:${loadavg}  Tmp:${acpitemp}  Up:$color${uptime_short}
+
 $cpubar
 ${cpugraph 000000 ffffff}
 NAME              CPU%  NAME              MEM%             
