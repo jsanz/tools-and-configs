@@ -1,0 +1,63 @@
+#!/bin/bash
+
+LOGFILE=/var/tmp/watcher.log
+EVENTS=close_write,delete,delete_self
+
+function log {
+  echo "[`date  +%y/%m/%d-%H:%M:%S`] $1" | tee -a $LOGFILE  
+}
+
+# -------------------------------------------------------
+# SET UP ROOT AND DOCS FOLDER
+# -------------------------------------------------------
+if [ $# -eq 0 ] ; then
+ ROOTFOLDER="`pwd`"
+ SOURCEFOLDER="$ROOTFOLDER/source"
+else
+  ROOTFOLDER=$1
+  if [ $# -eq 1 ] ; then
+   SOURCEFOLDER="$ROOTFOLDER/source"
+  else
+   SOURCEFOLDER=$2
+  fi
+fi
+
+# -------------------------------------------------------
+# START A LOCAL WEBSERVER FOR EASY ACCESS
+# -------------------------------------------------------
+log "Initial building"
+cd $ROOTFOLDER;make html
+
+log "Starting local webserver at http://localhost:8000"
+cd $ROOTFOLDER/build/html; python -m SimpleHTTPServer > /dev/null 2>&1 &
+
+
+# -------------------------------------------------------
+# MAIN CALL TO WATCH WHAT'S GOING ON INSIDE $FOLDER
+# -------------------------------------------------------
+
+log "Iniciando watcher de sphinx sobre $SOURCEFOLDER"
+inotifywait --format "%f %e"  -rme $EVENTS  $SOURCEFOLDER | while read LINE 
+do 
+  log "processing $LINE..."
+
+  set -- "$LINE" 
+  IFS=" "; declare -a Array=($*) 
+  FILE="${Array[0]}" 
+  EVENT="${Array[1]}" 
+  
+  FILENAME=${FILE%.*}
+  FILEEXT=${FILE##*.}
+  IFS=""
+  
+  # select by file extension
+  case $FILEEXT in
+  
+  rst|png|tmp)
+    cd $ROOTFOLDER;make html
+  ;;
+  *)
+    log "nothing to do with $FILE"
+  ;;
+  esac
+done
