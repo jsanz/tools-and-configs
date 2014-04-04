@@ -2,7 +2,8 @@
 
 OUTPUTS=`xrandr -q | grep " connected" | sed -e "s/\ .*//g"`
 
-OPT="MON" 
+#OPT="POR" 
+OPT="MON"
 
 case $OPT in
 
