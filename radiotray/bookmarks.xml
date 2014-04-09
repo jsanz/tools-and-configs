@@ -22,7 +22,7 @@
             <bookmark name="PopTron (Pop rock)" url="http://somafm.com/poptron.pls"/>
             <bookmark name="Beat Blender (Chill)" url="http://somafm.com/beatblender.pls"/>
             <bookmark name="Boot Liquor (Country)" url="http://somafm.com/bootliquor.pls"/>
-        </group>
+        <bookmark name="Folk Forward" url="http://somafm.com/folkfwd.pls"/></group>
         <group name="Jazz">
             <bookmark name="Smooth Jazz" url="http://smoothjazz.com/streams/smoothjazz_128.pls"/>
             <bookmark name="SKY.fm Piano Jazz" url="http://listen.sky.fm/public1/pianojazz.pls"/>

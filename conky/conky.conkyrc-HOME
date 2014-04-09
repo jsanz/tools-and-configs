@@ -109,4 +109,4 @@ ${color orange}FORTUNE COOKIE ${hr 2}$color
 ${execi 120  fortune -s | fold -s -w 55 }
 
 ${color orange}TWITTER REPLIES ${hr 2}$color
-${execi 300 /home/jsanz/bin/ttytter -norc -runcommand="/re" | tail -n2 | sed  "s/xurxosanz/xrx/g" | fold -s -w 55  }
+${execi 300 /home/jsanz/bin/ttytter -ssl -norc -runcommand="/re" | tail -n2 | sed  "s/xurxosanz/xrx/g" | fold -s -w 55  }
