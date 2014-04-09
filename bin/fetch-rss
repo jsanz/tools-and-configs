@@ -1,0 +1,12 @@
+#!/bin/sh
+
+EXPECTED_ARGS=2
+E_BADARGS=65
+
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` {url} {num-entries}"
+  exit $E_BADARGS
+fi
+
+curl -s $1 | xpath -q -e "/rss/channel/item[position()<=$2]/title/text()" 2>/dev/null 

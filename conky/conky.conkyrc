@@ -117,5 +117,9 @@ ${execi 120  fortune -s | fold -s -w 60 }
 ${color orange}TWITTER REPLIES ${hr 2}$color
 ${execi 300  ttytter -ssl -norc -runcommand="/re" | tail -n2 | sed  "s/xurxosanz/xrx/g" | fold -w 60  }
 
+${color orange}PLAYING ${hr 2}$color
+${execi 300  fetch-rss "http://ws.audioscrobbler.com/1.0/user/xurxosanz/recenttracks.rss" 4 | fold -w 60  }
+
 ${color orange}TIME TRACKING ${hr 2}$color
 ${execi 600 hamster-cli list }
+
