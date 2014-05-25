@@ -1,0 +1,17 @@
+#!/bin/sh
+
+numargs=$#
+theargs=$*
+
+set -- `tty` 
+no=$1
+
+if [ $numargs -eq 0 ]; then
+  if [ $no = "no" ]; then
+    tail -n 5 ~/.xrxlog | zenity --text-info --width 800 --height 250
+  else
+    tail -n 5 ~/.xrxlog
+  fi
+else
+  echo "`date +%F`;`date +%X`;$theargs" >> ~/.xrxlog
+fi

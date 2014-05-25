@@ -32,6 +32,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu (a program launcher)
 bindsym $mod+u exec dmenu_run
+#bindsym $mod+u exec /home/jsanz/.cabal/bin/yeganesh
 
 # change focus
 bindsym $mod+r focus left
@@ -165,6 +166,7 @@ bindsym XF86Mail exec gnome-alsamixer
 
 # Open Browser
 bindsym $mod+g exec sensible-browser
+bindsym $mod+Shift+g exec google-chrome --incognito
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -204,6 +206,7 @@ for_window [class="processing-core-PApplet"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gnome-alsamixer"] floating enable
 for_window [class="Arista-gtk"] floating enable
+for_window [class="Alarm-clock-applet"] floating enable
 
 # Assign apps to workspaces
 assign [class="Skype"] 10
@@ -212,17 +215,24 @@ assign [class="Empathy"] 10
 assign [class="Rhythmbox"] 10
 
 # auto starts
+
+# screensaver
+exec xscreensaver --no-splash
+
 # a wallpaper
 # exec feh --bg-scale /home/jsanz/.config/i3/wallpaper.jpg 
 exec /home/jsanz/bin/shuffle-wallpaper
+
 # services
-exec dropbox start
+exec gnome-sound-applet
+exec thunar --daemon
+# xdg-mime default Thunar.desktop inode/directory
+
+#exec dropbox start
+exec copy-agent
 exec unclutter
 exec radiotray 
 exec sleep 30; conky
-exec sleep 30; conky -c /home/jsanz/.conkyrcIMG
-#exec pidgin
-#exec empathy
+
 # start apps: browser, im, music and a terminal at "term" workspace
-exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
-exec nohup /home/jsanz/bin/sync-web &>> /tmp/update-site.log
+#exec --no-startup-id i3-msg 'workspace 1; exec google-chrome'
