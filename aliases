@@ -58,4 +58,7 @@ alias chgrp='chgrp --preserve-root'
 alias wget='wget -c'
 
 ## ttytter replies
-alias twreplies='ttytter -norc -runcommand=/re | tail -n 5'
+alias twreplies='ttytter -ssl -norc -runcommand=/re | tail -n 5'
+
+## servidor web
+alias www_serve='python -m SimpleHTTPServer 8000'

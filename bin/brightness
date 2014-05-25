@@ -11,6 +11,8 @@
 # Require: write permissions on brightness control file
 #
 # Config: Set up the folder where your working brightness files are
+#         Other option is setup sudo to not ask for a pastword 
+#         running this command
 
 [ -z $1 ] && echo "Need a number positive or negative to change screen brightness, exiting .." && exit
 
