@@ -1,0 +1,10 @@
+#!/bin/bash
+
+COMMAND=`pactl list sinks | grep -i silencio | grep yes | wc -l`
+MUTE=1
+
+if [ $COMMAND -eq 1 ] ; then 
+  MUTE=0
+fi
+
+pactl set-sink-mute 0 $MUTE
