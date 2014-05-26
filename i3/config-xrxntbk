@@ -156,13 +156,16 @@ bindsym Shift+F9 exec amixer -q -c 1 set Master 2dB- unmute
 bindsym Shift+F10 exec amixer -q -c 1 set Master 2dB+ unmute
 
 # Brightness keys
-#bindsym XF86MonBrightnessUp exec /home/jsanz/bin/brightness 1
-#bindsym XF86MonBrightnessDown exec /home/jsanz/bin/brightness -1
+bindsym XF86MonBrightnessUp exec sudo brightness 1
+bindsym XF86MonBrightnessDown exec sudo brightness -1
 
 # start a file manager
 #bindsym $mod+z exec pcmanfm
 bindsym $mod+Shift+z exec nautilus --no-desktop
 bindsym $mod+z exec thunar
+
+# start the screenshot
+bindcode --release 107 exec  --no-startup-id import /tmp/screenshot-`date +"%Y%m%d-%H%M%S".png
 
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
@@ -214,14 +217,20 @@ for_window [class="Thunderbird" instance="Msgcompose"] floating enable
 # auto starts
 # services: conky and dropbox
 exec --no-startup-id ~/bin/dbusregister.sh
-exec shuffle-wallpaper
+
+
+#exec shuffle-wallpaper
+exec feh --bg-scale ~/.config/wallpaper
+
 exec conky
 exec unclutter
-exec dropbox start
+#exec dropbox start
+exec copy-agent
 exec nm-applet
 exec touchpad-indicator
+exec gnome-sound-applet
 #
 # start apps: browser, im, music and a terminal at "term" workspace
-exec pidgin
+#exec pidgin
 exec radiotray 
 exec google-chrome
