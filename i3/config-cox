@@ -235,9 +235,11 @@ assign [class="Thunderbird"] 10: mail
 exec thunar --daemon
 # xdg-mime default Thunar.desktop inode/directory
 
+
 # Screensaver
 exec xscreensaver -no-splash
 exec xfce4-power-manager
+exec xfce4-volumed
 
 # Wallpaper
 exec shuffle-wallpaper
