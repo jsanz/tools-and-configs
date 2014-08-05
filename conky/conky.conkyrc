@@ -37,7 +37,7 @@ use_xft yes
 #xftfont Terminus:size=8
 #xftfont DejaVu Sans:size=8
 #xftfont Iconsolata Medium:size=11
-xftfont Droid Sans Mono:size=10
+xftfont Droid Sans Mono:size=7
 
 # Transparencia del texto con Xft
 xftalpha 0.5

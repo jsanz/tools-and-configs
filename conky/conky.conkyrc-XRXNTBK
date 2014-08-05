@@ -18,7 +18,7 @@ own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 #own_window_transparent no
 #own_window_hints undecorated,sticky,skip_taskbar,skip_pager
 
-maximum_width 350
+maximum_width 600
 #minimum_size 300
 
 # Usar doble buffering (reduce el parpadeo)
@@ -108,7 +108,7 @@ ${color orange}LOGGING ${hr 2}$color
 ${execi 30 tail -n2 /var/log/syslog | awk '{print " ",$6,$7,$8,$9,$10,$11,$12,$13}'}
 
 ${color orange}FORTUNE COOKIE ${hr 2}$color
-${execi 120  fortune -a -s | fold -s -w 50 }
+${execi 120  fortune -a -s | fold -s -w 80 }
 
 ${color orange}TWITTER REPLIES ${hr 2}$color
-${execi 300  ttytter -norc -runcommand="/re" | tail -n2 | sed  "s/xurxosanz/xrx/g" | fold -w 40  }
+${execi 300  ttytter -ssl -norc -runcommand="/re" | tail -n2 | sed  "s/xurxosanz/xrx/g" | fold -w 80  }
