@@ -215,7 +215,7 @@ assign [class="Empathy"] 10
 assign [class="Rhythmbox"] 10
 
 # auto starts
-
+exec setxkbmap es -variant dvorak
 # screensaver
 exec xscreensaver --no-splash
 

@@ -70,3 +70,4 @@ alias svi='sudo vi'
 alias watcher-sphinx-mydocs='watcher-sphinx /home/jsanz/docs/sphinx-docs /home/jsanz/Copy/sphinx-docs-source'
 
 alias ..='cd ..'
+
