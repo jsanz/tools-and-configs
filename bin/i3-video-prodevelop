@@ -3,7 +3,12 @@
 OUTPUTS=`xrandr -q | grep " connected" | sed -e "s/\ .*//g"`
 
 #OPT="POR" 
-OPT="MON"
+OPN="BOTH"
+#OPT="MON"
+
+if [ $# -eq 1 ] ; then
+  OPT=$1
+fi
 
 case $OPT in
 
@@ -11,8 +16,8 @@ case $OPT in
 
     # SOLO MONITOR
     echo "Solo monitor"
-    xrandr --output LVDS1 --off
     xrandr --output HDMI1 --auto --primary
+    xrandr --output LVDS1 --off
     ;;
 
   "POR")
@@ -30,7 +35,7 @@ case $OPT in
     #xrandr --output LVDS1 --auto --primary --pos 1900x432
     #xrandr --output HDMI1 --left-of LVDS1
     xrandr --output HDMI1 --auto --primary
-    xrandr --output LVDS1 --right-of HDMI1 --pos 1900x432
+    xrandr --output LVDS1 --auto --right-of HDMI1 --pos 1900x432
     ;;
 
   "*")
