@@ -215,7 +215,7 @@ for_window [class="Tsclient"] floating enable
 for_window [class="Hamster-indicator"] floating enable
 for_window [class="Gnome-alsamixer"] floating enable
 #for_window [class="Thunderbird" instance="Msgcompose"] floating enable
-for_window [class="Gnome-calculator"] floating enable
+for_window [class="Gcalctool"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [class="gnome-keyring-prompt-3"] floating enable
 for_window [class="Gtk-recordmydesktop"] floating enable
@@ -251,10 +251,9 @@ exec /home/jsanz/bin/copy-agent
 
 # Indicators
 exec nm-applet
-exec gnome-sound-applet
 exec hamster-indicator
 exec touchpad-indicator
-exec alarm-clock-applet
+#exec alarm-clock-applet
 exec gnome-keyring-daemon --start --components=pkcs11
 
 # Messaging
@@ -262,8 +261,9 @@ exec gnome-keyring-daemon --start --components=pkcs11
 exec pidgin 
 exec skype
 #exec xchat
+exec /home/jsanz/bin/telegram-web
 
 # Multimedia
 exec conky
-#exec radiotray 
+exec radiotray 
 

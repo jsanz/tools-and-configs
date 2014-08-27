@@ -1,0 +1,20 @@
+#!/bin/bash
+
+SOUND=/usr/share/sounds/purple/alert.wav
+REPEAT=2
+ICON=/usr/share/icons/Tango/32x32/emblems/emblem-important.png
+
+TITLE="Atención"
+BODY="Fin de la ejecución"
+
+play -q $SOUND repeat $REPEAT &
+
+echo $#
+
+if [ $# -ge 1 ]; then
+	TITLE=$1
+	BODY=$2
+fi
+
+notify-send -i $ICON "$TITLE" "$BODY" &
+

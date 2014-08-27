@@ -28,8 +28,8 @@ fi
 log "Initial building"
 cd $ROOTFOLDER;make html
 
-log "Starting local webserver at http://localhost:8000"
-cd $ROOTFOLDER/build/html; python -m SimpleHTTPServer > /dev/null 2>&1 &
+#log "Starting local webserver at http://localhost:8001"
+#cd $ROOTFOLDER/build/html; python -m SimpleHTTPServer 8001> /dev/null 2>&1 &
 
 
 # -------------------------------------------------------
