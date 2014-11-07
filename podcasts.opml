@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opml version="2.0">
+    <head>
+        <title>gPodder subscriptions</title>
+        <dateCreated>Fri, 07 Nov 2014 09:33:29 +0100</dateCreated>
+    </head>
+    <body>
+        <outline text="Tiny Desk Concerts from NPR Music feature your favorite musicians performing at All Songs Considered host Bob Boilen's desk in the NPR office. Hear Wilco, Adele, Passion Pit, Tinariwen, Miguel, The xx and many more. This is the audio version of the podcast. A video version is also available." title="NPR: Tiny Desk Concerts - Audio Podcast" type="rss" xmlUrl="http://www.npr.org/rss/podcast.php?id=510306"/>
+        <outline text="Host Bob Boilen spins new music from emerging bands and musical icons." title="NPR: All Songs Considered Podcast" type="rss" xmlUrl="http://www.npr.org/rss/podcast.php?id=510019"/>
+        <outline text="BBC Radio 6 Music's free weekly mixtape: an hour of fresh new tunes from BBC Introducing, handpicked by Tom Robinson each week in the early hours of Monday morning" title="Tom Robinson Introducing..." type="rss" xmlUrl="http://downloads.bbc.co.uk/podcasts/6music/trintro/rss.xml"/>
+        <outline text="The best new music from Northern Ireland! Alongside a guide to the biggest Northern Irish tracks on the ATL playlist, Rigsy presents a short gig guide and a profile on a local act ATL reckons are about to set the world alight. Also expect exclusive session tracks and one off specials from your favourite festivals in Ireland - north and south." title="ATL Introducing... New Irish Music" type="rss" xmlUrl="http://downloads.bbc.co.uk/podcasts/northernireland/nimusic/rss.xml"/>
+        <outline text="El jazz en todas sus vertientes clásicas, con especial atención al be hop, el cool, el sonido west coast o todos los maestros esenciales de este estilo definitorio del siglo XX.  Miles Davis, Dexter Gordon, Duke Ellington, Max Roach, Dizzy Gillespie, Don Cherry o Art Tatum, comparten cartel con solistas y grupos y orquestas de nueva generación." title="A todo jazz" type="rss" xmlUrl="http://www.rtve.es/api/programas/1875/audios.rss"/>
+        <outline text="Ruta 61 es una carretera nacional estadounidense que va desde la ciudad de New Orleans en Louisiana hasta la frontera con Canadá.  Discurre paralela al Río Mississippi, y atraviesa de lleno el Delta de Mississippi, que tanto significado tiene para el blues.  Ha sido una ruta importante en las migraciones de músicos negros del jazz y del blues del sur al norte, a Memphis, a Saint Louis, y de manera destacada a Chicago." title="Ruta 61" type="rss" xmlUrl="http://www.rtve.es/api/programas/22334/audios.rss"/>
+        <outline text="Disco grande presta atención a los sonidos más actuales, de aquí y foráneos, del pop y sus ramificaciones. Si en algún momento de su larga historia (sobre todo, de década y media para acá) se le colocó el cartel de programa indie, haremos lo posible y nos esforzaremos por responder a esa etiqueta. Más indies, imposible; más independientes, difícil." title="Disco grande" type="rss" xmlUrl="http://www.rtve.es/api/programas/1935/audios.rss"/>
+        <outline text="Un recorrido por algunas de las canciones más emocionantes de la historia de la música popular. Desde el folk al jazz, pasando por el pop o el soul. Sin perder de vista los ritmos actuales. Pasión por la música en estado puro." title="Saltamontes" type="rss" xmlUrl="http://www.rtve.es/api/programas/58212/audios.rss"/>
+        <outline text="From the Jazz masters of past and present to emerging new artists performing hard bop jazz and fusion." title="In the Groove, Jazz and Beyond" type="rss" xmlUrl="http://jazzandbeyond.podbean.com/feed/"/>
+    </body>
+</opml>
