@@ -66,10 +66,7 @@ alias www_serve='python -m SimpleHTTPServer 8000'
 alias cpufreqset='sudo cpufreq-set -c 0 -r -g'
 alias svi='sudo vi'
 
-alias watcher-sphinx-mydocs='watcher-sphinx /home/jsanz/docs/sphinx-docs /home/jsanz/Copy/sphinx-docs-source'
+alias watcher-sphinx-mydocs='watcher-sphinx /home/jsanz/docs/sphinx-docs /home/jsanz/cloud/Copy/sphinx-docs-source'
 
 alias ..='cd ..'
 
-
-# Alias de aplicacion
-alias sqlpluscsc='sqlplus64 CSCTURDEV/CSCTURDEV@vallibona/vallibona'
