@@ -6,10 +6,10 @@ alias ls='ls --color=auto'
 
 ## Use a long listing format ##
 alias ll='ls -la'
+alias llh='ls -lha'
 
 ## Show hidden files ##
 alias l.='ls -d .* --color=auto'
-
 ## get rid of command not found ##
 alias cd..='cd ..'
 
@@ -69,3 +69,7 @@ alias svi='sudo vi'
 alias watcher-sphinx-mydocs='watcher-sphinx /home/jsanz/docs/sphinx-docs /home/jsanz/Copy/sphinx-docs-source'
 
 alias ..='cd ..'
+
+
+# Alias de aplicacion
+alias sqlpluscsc='sqlplus64 CSCTURDEV/CSCTURDEV@vallibona/vallibona'

@@ -234,7 +234,7 @@ assign [class="Thunderbird"] 10: mail
 # -- AUTO STARTS ---
 exec thunar --daemon
 # xdg-mime default Thunar.desktop inode/directory
-
+exec unclutter
 
 # Screensaver
 exec xscreensaver -no-splash
@@ -248,6 +248,7 @@ exec shuffle-wallpaper
 # Cloud storage
 #exec dropbox start
 exec /home/jsanz/bin/copy-agent
+#exec owncloud
 
 # Indicators
 exec nm-applet
