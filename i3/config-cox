@@ -221,13 +221,19 @@ for_window [class="gnome-keyring-prompt-3"] floating enable
 for_window [class="Gtk-recordmydesktop"] floating enable
 for_window [class="Alarm-clock-applet"] floating enable
 for_window [class="Xfce4-notifyd"] floating enable
-
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="Xfce4-taskmanager"] floating enable
+for_window [class="Thunar"] floating enable
+for_window [class="TeamViewer"] floating enable
+for_window [class="TeamViewer.exe"] floating enable
+#for_window [class="Telegram"] floating enable
 # Assign apps to workspaces
 assign [class="Skype"] 9: im
 assign [class="Pidgin"] 9: im
 assign [class="Empathy"] 9: im
 assign [class="Xchat"] 9: im
 assign [class="Rhythmbox"] 9: im
+assign [class="Telegram"] 9: im
 assign [class="Thunderbird"] 10: mail
 
 
@@ -262,7 +268,7 @@ exec gnome-keyring-daemon --start --components=pkcs11
 exec pidgin 
 exec skype
 #exec xchat
-exec /home/jsanz/bin/telegram-web
+exec /home/jsanz/bin/google-apps/telegram-web
 
 # Multimedia
 exec conky
