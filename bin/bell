@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOUND=/usr/share/sounds/purple/alert.wav
+SOUND=/usr/share/sounds/ubuntu/stereo/message.ogg
 REPEAT=2
 ICON=/usr/share/icons/Tango/32x32/emblems/emblem-important.png
 

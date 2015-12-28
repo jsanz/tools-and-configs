@@ -12,7 +12,8 @@
 # Provides: go to http://localhost:8000
 # 
 
-python -m SimpleHTTPServer
+#python -m SimpleHTTPServer
 
 # You can place your preferred port also
-# python -m SimpleHTTPServer 8080
+
+python -m SimpleHTTPServer $1
