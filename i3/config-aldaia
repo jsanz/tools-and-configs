@@ -92,8 +92,8 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace "9: im"
-bindsym $mod+0 workspace "10: mail"
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # assign workspaces to screens
 #workspace "9: im" output LVDS1
@@ -108,8 +108,8 @@ bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace "9: im"
-bindsym $mod+Shift+0 move container to workspace "10: mail"
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # move on next and previous workspaces
 bindsym $mod+Control+Left workspace prev
@@ -165,8 +165,8 @@ bindsym XF86Mail exec gnome-alsamixer
 
 # start a file manager
 #bindsym $mod+z exec pcmanfm
-#bindsym $mod+Shift+z exec nautilus --no-desktop
-bindsym $mod+z exec thunar 
+bindsym $mod+z exec nautilus --no-desktop
+#bindsym $mod+z exec thunar 
 
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
@@ -238,39 +238,33 @@ assign [class="Thunderbird"] 10: mail
 
 
 # -- AUTO STARTS ---
-exec thunar --daemon
-# xdg-mime default Thunar.desktop inode/directory
 exec unclutter
 
 # Screensaver
 exec xscreensaver -no-splash
-exec xfce4-power-manager
-exec xfce4-volumed
+#exec xfce4-power-manager
+#exec xfce4-volumed
 
 # Wallpaper
-exec shuffle-wallpaper
-#exec feh --bg-scale ~/.config/wallpaper 
+#exec shuffle-wallpaper
+exec feh --bg-scale ~/.config/wallpaper 
 
 # Cloud storage
-#exec dropbox start
-exec /home/jsanz/bin/copy-agent
-#exec owncloud
+exec /home/jsanz/bin/btsync/btsync --config /home/jsanz/bin/btsync/btsync.conf
 
 # Indicators
 exec nm-applet
-exec hamster-indicator
-exec touchpad-indicator
+exec indicator-sound-switcher
+#exec hamster-indicator
+#exec touchpad-indicator
 #exec alarm-clock-applet
 exec gnome-keyring-daemon --start --components=pkcs11
 
 # Messaging
-#exec empathy
-exec pidgin 
-exec skype
-#exec xchat
-exec /home/jsanz/bin/google-apps/telegram-web
+exec hexchat
+exec slack
+exec /home/jsanz/bin/franz/Franz
+
 
 # Multimedia
-exec conky
-exec radiotray 
-
+exec spotify

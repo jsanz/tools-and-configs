@@ -1,0 +1,112 @@
+#
+#
+# UBUNTU-CONKY
+
+#
+
+# Ejecutarlo en su propia ventana en lugar de usar el escritorio (requerido con nautilus)
+
+own_window yes
+background yes
+
+# Parámetros para ver conky todo el tiempo
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+
+# Parámetros para verlo como widget
+#own_window_type normal
+#own_window_transparent no
+#own_window_hints undecorated,sticky,skip_taskbar,skip_pager
+
+maximum_width 500
+#minimum_size 300
+
+# Usar doble buffering (reduce el parpadeo)
+double_buffer yes
+
+# Adaptar a la ventana
+use_spacer right 
+use_xft yes
+
+# Fuente Xft (solo si xft esta activado)
+#xftfont DejaVu Sans Mono:size=9 
+#Monospace:size=8
+xftfont Bitstream Vera Sans Mono:size=11
+
+# Transparencia del texto con Xft
+xftalpha 0.5
+
+# Log en la consola
+out_to_console no 
+
+# Intervalo de actualización (segundos)
+update_interval 1.0
+
+# Dibujar sombras
+draw_shades no
+
+# Propiedades del texto
+draw_outline no 
+draw_borders no
+uppercase no
+
+# Propiedades de los bordes
+stippled_borders 1
+border_inner_margin 6
+border_width 2
+
+# Color por defecto
+default_color white #orange #black #darkblue 
+own_window_colour white
+
+
+# Alineación del texto
+#alignment top_left
+alignment top_right
+
+
+# Separación de los bordes del escritorio
+gap_x 10
+gap_y 37
+
+
+# Tamaño del buffer de texto
+#text_buffer_size 512
+
+#lua_load ~/bin/draw_bg.lua
+#lua_draw_hook_post
+
+# Todo lo que aparece partir de 'TEXT' se renderiza en pantalla
+#${color white}
+#${time %A %e/%m · %R} · uptime: ${uptime_short}
+
+TEXT
+${color orange}CPU ${hr 2}$color
+${freq}MHz  Load:${loadavg}  Tmp:${acpitemp}  Up:$color${uptime_short}
+$cpubar
+${cpugraph 000000 ffffff}
+NAME              CPU%  NAME              MEM%             
+${top name 1} ${top cpu 1}  ${top_mem name 1} ${top mem 1}
+${top name 2} ${top cpu 2}  ${top_mem name 2} ${top mem 2}
+${top name 3} ${top cpu 3}  ${top_mem name 3} ${top mem 3}
+
+${color orange}MEMORIA / DISCOS ${hr 2}$color
+RAM: $mem ${alignr}SWP: $swap
+${memgraph}
+${color orange}Root$color ${fs_free /} / ${fs_size /} ${alignr} ${color orange}Home$color ${fs_free /home} / ${fs_size /home}
+
+${color orange}BATERÍA ${hr 2}$color
+${battery_percent BAT0}% - ${battery_time BAT0} ${battery_bar 6  BAT0}
+
+${color orange}RED  ${hr 2}$color
+LAN: ${addr enp3s0f1}  ${alignr} WLAN: ${addr wlan0}    
+Down: $color${downspeed enp3s0f1} Up: ${upspeed enp3s0f1} ${alignr} Down: $color${downspeed wlan0} Up: ${upspeed wlan0}
+${downspeedgraph enp3s0f1 25,80 000000 ff0000} ${upspeedgraph enp3s0f1 25,80 000000 00ff00}$color ${alignr}${downspeedgraph wlan0 25,80 000000 ff0000} ${upspeedgraph wlan0 25,80 000000 00ff00}$color
+
+${color orange}LOGGING ${hr 2}$color
+${execi 30 tail -n4 /var/log/syslog | awk '{print " ",$6,$7,$8,$9,$10,$11,$12,$13}'}
+
+${color orange}FORTUNE COOKIE ${hr 2}$color
+${execi 120  fortune -s | fold -s -w 60 }
