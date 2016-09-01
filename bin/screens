@@ -1,0 +1,44 @@
+#!/bin/bash
+# Author: Ivan Mincik, ivan.mincik@gmail.com
+
+S_PRIMARY="eDP1"
+
+S_OTHER=$(xrandr \
+    | grep -v "^$S_PRIMARY" \
+    | grep " connected" \
+    | awk -F " " '{print $1}')
+
+S_SECOND=$(echo $S_OTHER | awk -F " " '{print $1}')
+#S_THIRD=$(echo $S_OTHER | awk -F " " '{print $2}')
+
+
+if [ -z "$1" ]; then
+    xrandr
+
+elif [ "$1" == "single" ]; then
+    echo "Setting active screens to '$S_PRIMARY'."
+    xrandr --output $S_PRIMARY --auto --primary
+
+    for s in $S_OTHER; do
+       xrandr --output $s --off
+    done
+
+elif [ "$1" == "mirror" ]; then
+    echo "Setting active screens to '$S_PRIMARY' and '$S_SECOND'."
+    xrandr --output $S_PRIMARY --auto --primary
+    xrandr --output $S_SECOND --auto --same-as $S_PRIMARY
+
+elif [ "$1" == "dock" ]; then
+    echo "Setting active screens to '$S_SECOND' and '$S_THIRD'."
+    xrandr --output $S_PRIMARY --off
+
+    xrandr --output $S_SECOND --auto --primary
+#    xrandr --output $S_THIRD --auto --right-of $S_SECOND
+
+else
+    echo "Setting active screens to '$S_PRIMARY' and '$S_SECOND'."
+    xrandr --output $S_PRIMARY --auto --primary
+    xrandr --output $S_SECOND --auto --$1 $S_PRIMARY
+fi
+
+# vim: set ts=4 sts=4 sw=4 et:
