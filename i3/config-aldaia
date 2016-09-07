@@ -172,8 +172,9 @@ bindsym $mod+z exec nautilus --no-desktop
 bindsym $mod+Shift+c exec zenity --calendar
 
 # Start a browser
-bindsym $mod+g exec sensible-browser
-bindsym $mod+Shift+g exec google-chrome --incognito
+bindsym $mod+g exec google-chrome  --profile-directory="Profile 1" 
+bindsym $mod+Shift+g exec google-chrome  --profile-directory="Default" --incognito
+bindsym $mod+f exec google-chrome  --profile-directory="Default" 
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -265,6 +266,9 @@ exec hexchat
 exec slack
 exec /home/jsanz/bin/franz/Franz
 
-
 # Multimedia
 exec spotify
+
+# Conky
+exec sleep 30; conky
+
