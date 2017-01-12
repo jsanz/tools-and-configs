@@ -1,0 +1,10 @@
+---
+# Organization user
+jsanz:
+  api_key: my_long_api_key
+  organization: my_team_if_any
+
+# Free account
+xurxosanz:
+  api_key: my_api_key
+
