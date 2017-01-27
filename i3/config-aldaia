@@ -146,6 +146,7 @@ bindsym $mod+p mode "resize"
 # finds out, if available)
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
+    #status_command /home/jsanz/bin/i3status_custom
 	position top
 }
 
@@ -154,7 +155,7 @@ bar {
 # Volume keys
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec i3-audio-toggle 
+bindsym XF86AudioMute exec i3-audio-toggle
 
 # Brightness keys
 bindsym XF86MonBrightnessUp exec sudo /home/jsanz/bin/brightness 50
@@ -167,16 +168,16 @@ bindsym XF86Mail exec gnome-alsamixer
 # start a file manager
 #bindsym $mod+z exec pcmanfm
 bindsym $mod+Shift+z exec nautilus --no-desktop
-#bindsym $mod+z exec thunar 
+#bindsym $mod+z exec thunar
 bindsym $mod+z exec xfe
 
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
 
 # Start a browser
-bindsym $mod+g exec google-chrome  --profile-directory="Default" 
+bindsym $mod+g exec google-chrome  --profile-directory="Default"
 bindsym $mod+Shift+g exec google-chrome  --profile-directory="Default" --incognito
-bindsym $mod+f exec google-chrome  --profile-directory="Profile 1" 
+bindsym $mod+f exec google-chrome  --profile-directory="Profile 1"
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -200,6 +201,10 @@ bindsym $mod+Shift+q restart
 # reload the configuration file
 bindsym $mod+Shift+j reload
 
+# assign workspaces to displays
+
+workspace 9 output eDP-1
+workspace 10 output eDP-1
 
 # app settings
 
@@ -227,12 +232,13 @@ for_window [class="Thunar"] floating enable
 for_window [class="Gedit"] floating enable
 for_window [class="Keepassx"] floating enable
 for_window [class="Yad"] floating enable
+
 # Assign apps to workspaces
-#assign [class="Skype"] 9: im
-assign [class="Franz"] 9
-assign [class="Slack"] 9
-assign [class="spotify"] 8
-assign [class="Spotify"] 8
+#assign [class="Skype"] 10
+assign [class="Franz"] 10
+assign [class="Slack"] 10
+assign [class="spotify"] 9
+assign [class="Spotify"] 9
 
 # -- AUTO STARTS ---
 exec unclutter
@@ -244,7 +250,8 @@ exec xscreensaver -no-splash
 
 # Wallpaper
 #exec shuffle-wallpaper
-exec sleep 60; feh --bg-scale ~/.config/wallpaper 
+#exec sleep 60; feh --bg-scale ~/.config/wallpaper
+exec --no-startup-id sleep 60; nitrogen --restore
 
 # Cloud storage
 exec /home/jsanz/bin/btsync/btsync --config /home/jsanz/bin/btsync/btsync.conf
@@ -266,6 +273,7 @@ exec /home/jsanz/bin/franz/Franz
 exec spotify
 
 # Conky
-exec sleep 30; conky
+exec sleep 120; conky
 
-
+# Harvest
+exec sleep 120; /home/jsanz/harvest-notify

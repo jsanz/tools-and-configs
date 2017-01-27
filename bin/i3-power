@@ -28,9 +28,7 @@ suspend )
   zenity --question --text '¿Suspender el equipo?'
   export shut=$?
   if [ $shut -eq 0 ] ; then
-    if [ `which hamster-cli` ] ; then
-	hamster-cli stop
-    fi
+    harvest -s
     i3lock -c 000000 && sudo pm-suspend
   fi
   ;;
@@ -38,9 +36,7 @@ exit )
   zenity --question --text '¿Cerrar sesión?'
   export shut=$?
   if [ $shut -eq 0 ] ; then
-    if [ `which hamster-cli` ] ; then
-	hamster-cli stop
-    fi
+    harvest -s
     i3-msg exit
   fi
   ;;
@@ -48,9 +44,7 @@ shutdown )
   zenity --question --text '¿Apagar el equipo?'
   export shut=$?
   if [ $shut -eq 0 ] ; then
-    if [ `which hamster-cli` ] ; then
-	hamster-cli stop
-    fi
+    harvest -s
     sudo shutdown -h now  
   fi
   ;;
