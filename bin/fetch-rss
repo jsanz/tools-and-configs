@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 EXPECTED_ARGS=2
 E_BADARGS=65
@@ -9,4 +9,7 @@ then
   exit $E_BADARGS
 fi
 
-curl -s $1 | xpath -q -e "/rss/channel/item[position()<=$2]/title/text()" 2>/dev/null 
+#curl -s $1 | xpath -q -e "/rss/channel/item[position()<=$2]/title/text()" 2>/dev/null 
+
+source ~/.virtualenvs/datasci/bin/activate
+curl -s $1 | xml2json | jq ".rss.channel.item[].title.\"#text\"" | head -n $2 | sed 's/\"//g' | sed 's/^.*: //'
