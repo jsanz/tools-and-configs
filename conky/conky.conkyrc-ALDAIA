@@ -56,7 +56,7 @@ ${color orange}FORTUNE COOKIE ${hr 2}$color
 ${execi 120  fortune -s | fold -s -w 60 }
 
 ${color orange}HARVEST ${hr 2}$color
-${execi 900  harvest | tee /tmp/harvest}
+${execi 300 hcl}
 
 ]]
 
