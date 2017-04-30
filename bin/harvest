@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+#
+
+# script to retrieve the number of question answered in Stack Exchange
+import requests
+import json
+import os
+import sys
+import time
+import argparse
+
+# Configuration
+URL_BASE = 'https://cartosolutions.harvestapp.com'
+
+# Logger (better than print)
+import logging
+logging.basicConfig(
+    level=logging.WARN,
+    format=' %(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%I:%M:%S %p')
+logger = logging.getLogger()
+
+# Parser
+parser = argparse.ArgumentParser(
+    description='Get data from your Harvest daily')
+parser.add_argument('--long','-l', action="store_true",
+                    help='Reports all the entries')
+parser.add_argument('--stop','-s', action='store_true',
+                    help='Stops the current timer')
+parser.add_argument('--token', dest='token',
+                    default=os.environ['HARVEST_TOKEN'] if 'HARVEST_TOKEN' in os.environ else None,
+                    help='SupportBee token (defaults to env variable SB_TOKEN)')
+args = parser.parse_args()
+
+def get_daily():
+    url = "{url}/daily".format(url=URL_BASE)
+    querystring = {"slim":"1"}
+
+    r = requests.request("GET", url, headers=get_headers(), params=querystring)
+
+    return r.json()
+
+def get_headers():
+    return  {
+        'authorization': "Basic {}".format(args.token),
+        'content-type': "application/json",
+        'accept': "application/json"
+    }
+
+def stop_timer(entry):
+    """
+    https://YOURACCOUNT.harvestapp.com/daily/timer/{DAY_ENTRY_ID}
+    """
+    url = "{url}/daily/timer/{entry_id}".format(url=URL_BASE,entry_id=entry['id'])
+
+    r = requests.request("GET", url, headers=get_headers())
+    return r.json()
+
+def print_harvest_entry(entry,is_long=False):
+    if is_long:
+        template = "{id:<10} {project:<10} {task:<15}  {updated_at}    {hours:<6}   {notes:<30}".format(
+            project=entry['project'],
+            task=entry['task'],
+            notes=entry['notes'],
+            id=entry['id'],
+            updated_at=entry['updated_at'][11:16],
+            hours=entry['hours']
+            )
+    else:
+        template = "{task} ({project})".format(project=entry['project'],task=entry['task'])
+    return template
+
+
+logger.debug('Starting...')
+daily = get_daily()
+
+if 'day_entries' in daily:
+    if args.long:
+        print("{id:<10} {project:<10} {task:<15} {updated_at:<7}  {hours:<6}   {notes}".format(
+            project='Project',
+            task='Task',
+            notes='Notes',
+            id='Task ID',
+            updated_at='Updated',
+            hours='Hours'))
+        print("{blank:*<10} {blank:*<10} {blank:*<15} {blank:*<7}  {blank:*<6} {blank:*<30}".format(blank=''))
+
+    for entry in daily['day_entries']:
+        if args.long:
+            print(print_harvest_entry(entry,True))
+        elif 'timer_started_at' in entry:
+            desc = print_harvest_entry(entry,False)
+            if args.stop:
+                stop = stop_timer(entry)
+                print("Stopping... {entry}".format(entry=desc))
+                sys.exit(0)
+            else:
+                print(desc)
+
+else:
+    logger.warn('No entries found')
+    sys.exit(1)
