@@ -3,14 +3,18 @@
 numargs=$#
 theargs=$*
 
-set -- `tty` 
-no=$1
+# detect bash
+#set -- `tty` 
+#no=$1
 
 if [ $numargs -eq 0 ]; then
-  if [ $no = "no" ]; then
-    tail -n 5 ~/.xrxlog | zenity --text-info --width 800 --height 250
-  else
+  # detect bash
+  #if [ $no = "no" ]; then
+  # detect zsh
+  if [[ $ZSH_EVAL_CONTEXT == 'toplevel' ]]; then
     tail -n 5 ~/.xrxlog
+  else
+    tail -n 5 ~/.xrxlog | zenity --text-info --width 800 --height 250
   fi
 else
   echo "`date +%F`;`date +%X`;$theargs" >> ~/.xrxlog
