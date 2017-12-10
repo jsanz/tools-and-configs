@@ -27,6 +27,9 @@ font xft:SourceCodePro Sans Regular 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Default layout
+workspace_layout tabbed
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -174,9 +177,13 @@ bindsym $mod+Shift+v exec amixer -D pulse sset Master 5%-
 
 # start a file manager
 #bindsym $mod+z exec pcmanfm
-bindsym $mod+Shift+z exec nautilus --no-desktop
+bindsym $mod+Shift+z exec nautilus --no-desktop /home/jsanz/desktop
+
 #bindsym $mod+z exec thunar
 bindsym $mod+z exec xfe
+
+# start sublime
+bindsym $mod+e exec subl
 
 # Show a simple calendar
 bindsym $mod+Shift+c exec zenity --calendar
@@ -184,7 +191,9 @@ bindsym $mod+Shift+c exec zenity --calendar
 # Start a browser
 bindsym $mod+g exec google-chrome  --profile-directory="Default"
 bindsym $mod+Shift+g exec google-chrome  --profile-directory="Default" --incognito
-bindsym $mod+f exec google-chrome  --profile-directory="Profile 1"
+#bindsym $mod+f exec google-chrome  --profile-directory="Profile 1"
+bindsym $mod+f exec firefox
+bindsym $mod+Shift+f exec firefox --private-window
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -209,7 +218,6 @@ bindsym $mod+Shift+q restart
 bindsym $mod+Shift+j reload
 
 # assign workspaces to displays
-
 workspace 9 output eDP-1
 workspace 10 output eDP-1
 
@@ -242,18 +250,16 @@ for_window [class="Yad"] floating enable
 
 # Assign apps to workspaces
 #assign [class="Skype"] 10
-assign [class="Franz"] 10
-assign [class="Slack"] 10
-assign [class="spotify"] 9
-assign [class="Spotify"] 9
+assign [class="Franz"] 1
+assign [class="Slack"] 1
+assign [class="spotify"] 2
+assign [class="Spotify"] 2
 
 # -- AUTO STARTS ---
 exec unclutter
 
 # Screensaver
 exec xscreensaver -no-splash
-#exec xfce4-power-manager
-#exec xfce4-volumed
 
 # Wallpaper
 #exec shuffle-wallpaper
@@ -266,21 +272,23 @@ exec /home/jsanz/bin/btsync/btsync --config /home/jsanz/bin/btsync/btsync.conf
 # Indicators
 exec nm-applet
 exec indicator-sound-switcher
-#exec hamster-indicator
-#exec touchpad-indicator
-#exec alarm-clock-applet
 exec gnome-keyring-daemon --start --components=pkcs11
 
 # Messaging
-exec hexchat
-exec slack
-exec /home/jsanz/bin/franz/Franz
+exec sleep 30; hexchat
+exec sleep 30; slack
+exec sleep 30; /home/jsanz/bin/franz/Franz
 
 # Multimedia
-exec spotify
+exec sleep 30; spotify
 
 # Conky
 exec sleep 120; conky
 
-# Harvest
-# exec sleep 120; /home/jsanz/bin/harvest-notify
+# Keybase
+exec sleep 120; run_keybase
+
+# Set speed trackball
+exec xinput --set-prop "Logitech MX Ergo" 268 0.30
+
+exec sleep 120; glances -w
