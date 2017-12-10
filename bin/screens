@@ -38,9 +38,12 @@ elif [ "$1" == "mirror" ]; then
 
 elif [ "$1" == "dock" ]; then
     echo "Setting active screens to '$S_SECOND' and '$S_THIRD'."
-    xrandr --output $S_PRIMARY --mode $MODE --auto 
 
-    xrandr --output $S_SECOND --auto --above $S_PRIMARY --primary
+   xrandr --output $S_SECOND --auto --above $S_PRIMARY --primary
+#   xrandr --output $S_SECOND --auto --left-of $S_PRIMARY --primary
+#   xrandr --output $S_SECOND --auto --right-of $S_PRIMARY --primary
+#    xrandr --output $S_PRIMARY --mode $MODE --auto 
+#    xrandr --output $S_PRIMARY --auto 
 #    xrandr --output $S_THIRD --auto --right-of $S_SECOND
 
 else
@@ -49,4 +52,5 @@ else
     xrandr --output $S_SECOND --auto --$1 $S_PRIMARY
 fi
 
+nitrogen --restore
 # vim: set ts=4 sts=4 sw=4 et:
