@@ -16,6 +16,15 @@ MODE='1360x768 '
 if [ -z "$1" ]; then
     xrandr
 
+elif [ "$1" == "singlehd" ]; then
+    echo "Setting active screens to '$S_PRIMARY'."
+    xrandr --output $S_PRIMARY --auto --primary
+
+
+    for s in $S_OTHER; do
+       xrandr --output $s --off
+    done
+
 elif [ "$1" == "single" ]; then
     echo "Setting active screens to '$S_PRIMARY'."
     xrandr --output $S_PRIMARY --mode $MODE --auto --primary
@@ -28,7 +37,6 @@ elif [ "$1" == "single" ]; then
 elif [ "$1" == "monitor" ]; then
     echo "Setting active screens to '$S_SECOND'"
     xrandr --output $S_PRIMARY --off
-
     xrandr --output $S_SECOND --auto --primary
 
 elif [ "$1" == "mirror" ]; then
@@ -36,15 +44,15 @@ elif [ "$1" == "mirror" ]; then
     xrandr --output $S_PRIMARY --mode $MODE --auto --primary
     xrandr --output $S_SECOND --auto --same-as $S_PRIMARY
 
-elif [ "$1" == "dock" ]; then
-    echo "Setting active screens to '$S_SECOND' and '$S_THIRD'."
 
+elif [ "$1" == "dock" ]; then
    xrandr --output $S_SECOND --auto --above $S_PRIMARY --primary
-#   xrandr --output $S_SECOND --auto --left-of $S_PRIMARY --primary
-#   xrandr --output $S_SECOND --auto --right-of $S_PRIMARY --primary
-#    xrandr --output $S_PRIMARY --mode $MODE --auto 
-#    xrandr --output $S_PRIMARY --auto 
-#    xrandr --output $S_THIRD --auto --right-of $S_SECOND
+elif [ "$1" == "above" ]; then
+   xrandr --output $S_SECOND --auto --above $S_PRIMARY --primary
+elif [ "$1" == "left" ]; then
+   xrandr --output $S_SECOND --auto --left-of $S_PRIMARY --primary
+elif [ "$1" == "right" ]; then
+   xrandr --output $S_SECOND --auto --right $S_PRIMARY --primary
 
 else
     echo "Setting active screens to '$S_PRIMARY' and '$S_SECOND'."

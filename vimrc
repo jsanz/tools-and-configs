@@ -13,13 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
-Plugin 'tmhedberg/SimpylFold'
-
-Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'scrooloose/syntastic'
-
-Plugin 'nvie/vim-flake8'
 
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
