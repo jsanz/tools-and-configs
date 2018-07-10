@@ -1,0 +1,21 @@
+!#/bin/bash
+
+ans=$(zenity  --list  --radiolist --height=280  \
+--title "screens-select" --text "Select a screen mode" \
+--column "Pick" --column "Type" \
+FALSE dock \
+TRUE monitor \
+FALSE single \
+FALSE singlehd \
+FALSE left \
+FALSE right \
+FALSE above \
+FALSE mirror); 
+
+if [ ! -z "$ans" ]; then 
+  echo $ans
+  screens $ans 
+else 
+  echo "Nothing selected"
+fi
+
