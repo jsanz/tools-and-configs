@@ -25,7 +25,7 @@ fi
 case "$1" in
 
 suspend )
-  zenity --question --text '¿Suspender el equipo?'
+  zenity --question --text '¿Suspender el equipo?' --no-wrap
   export shut=$?
   if [ $shut -eq 0 ] ; then
     harvest -s
@@ -33,7 +33,7 @@ suspend )
   fi
   ;;
 exit )
-  zenity --question --text '¿Cerrar sesión?'
+  zenity --question --text '¿Cerrar sesión?' --no-wrap
   export shut=$?
   if [ $shut -eq 0 ] ; then
     harvest -s
@@ -41,7 +41,7 @@ exit )
   fi
   ;;
 shutdown )
-  zenity --question --text '¿Apagar el equipo?'
+  zenity --question --text '¿Apagar el equipo?' --no-wrap
   export shut=$?
   if [ $shut -eq 0 ] ; then
     harvest -s

@@ -45,9 +45,9 @@ ${color orange}BATERÍA ${hr 2}$color
 ${battery_percent BAT0}% - ${battery_time BAT0} ${battery_bar 6  BAT0}
 
 ${color orange}RED  ${hr 2}$color
-LAN: ${addr enp3s0f1}  ${alignr} WLAN: ${addr wlan0}
-Down: $color${downspeed enp3s0f1} Up: ${upspeed enp3s0f1} ${alignr} Down: $color${downspeed wlan0} Up: ${upspeed wlan0}
-${downspeedgraph enp3s0f1 25,80 000000 ff0000} ${upspeedgraph enp3s0f1 25,80 000000 00ff00}$color ${alignr}${downspeedgraph wlan0 25,80 000000 ff0000} ${upspeedgraph wlan0 25,80 000000 00ff00}$color
+LAN: ${addr enxa0cec8c0b146}  ${alignr} WLAN: ${addr wlp2s0}
+Down: $color${downspeed enxa0cec8c0b146} Up: ${upspeed enxa0cec8c0b146} ${alignr} Down: $color${downspeed wlp2s0} Up: ${upspeed wlp2s0}
+${downspeedgraph enxa0cec8c0b146 25,80 000000 ff0000} ${upspeedgraph enxa0cec8c0b146 25,80 000000 00ff00}$color ${alignr}${downspeedgraph wlp2s0 25,80 000000 ff0000} ${upspeedgraph wlp2s0 25,80 000000 00ff00}$color
 
 ${color orange}LOGGING ${hr 2}$color
 ${execi 30 tail -n4 /var/log/syslog | awk '{print " ",$6,$7,$8,$9,$10,$11,$12,$13}'}
