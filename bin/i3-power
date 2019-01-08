@@ -28,7 +28,6 @@ suspend )
   zenity --question --text '¿Suspender el equipo?' --no-wrap
   export shut=$?
   if [ $shut -eq 0 ] ; then
-    harvest -s
     i3lock -c 000000 && sudo pm-suspend
   fi
   ;;
@@ -36,7 +35,6 @@ exit )
   zenity --question --text '¿Cerrar sesión?' --no-wrap
   export shut=$?
   if [ $shut -eq 0 ] ; then
-    harvest -s
     i3-msg exit
   fi
   ;;
@@ -44,7 +42,6 @@ shutdown )
   zenity --question --text '¿Apagar el equipo?' --no-wrap
   export shut=$?
   if [ $shut -eq 0 ] ; then
-    harvest -s
     sudo shutdown -h now  
   fi
   ;;
