@@ -52,7 +52,7 @@ elif [ "$1" == "above" ]; then
 elif [ "$1" == "left" ]; then
    xrandr --output $S_SECOND --auto --left-of $S_PRIMARY --primary
 elif [ "$1" == "right" ]; then
-   xrandr --output $S_SECOND --auto --right $S_PRIMARY --primary
+   xrandr --output $S_SECOND --auto --right-of $S_PRIMARY --primary
 
 else
     echo "Setting active screens to '$S_PRIMARY' and '$S_SECOND'."
