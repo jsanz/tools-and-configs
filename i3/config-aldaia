@@ -19,7 +19,7 @@ set $mod Mod4
 # chose an xft font, such as:
 #font xft:DejaVu Sans Mono 10
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono 9
+font pango:DejaVu Sans Mono 12
 #font pango:SourceCodePro Sans Regular 10
 #font pango:Monospace 9
 
@@ -33,8 +33,9 @@ workspace_layout tabbed
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu (a program launcher)
-bindsym $mod+u exec dmenu_run
-bindsym $mod+Shift+u exec i3-dmenu-desktop
+# bindsym $mod+Shift+u exec i3-dmenu-desktop
+bindsym $mod+u exec --no-startup-id "rofi -show run -font \\"DejaVu 20\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+Shift+u exec dmenu_run
 
 # change focus
 bindsym $mod+r focus left
@@ -67,7 +68,7 @@ bindsym $mod+l split h
 bindsym $mod+h split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+i fullscreen
+#bindsym $mod+i fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+o layout stacking
@@ -191,11 +192,17 @@ bindsym Print exec flameshot gui
 bindsym $mod+Shift+c exec zenity --calendar
 
 # Start a browser
-bindsym $mod+g exec google-chrome  --profile-directory="Default"
-bindsym $mod+Shift+g exec google-chrome  --profile-directory="Default" --incognito
+bindsym $mod+g exec brave-browser --force-dark-mode  --profile-directory="Default"
+bindsym $mod+Shift+g exec brave-browser --profile-directory="Default" --incognito
 
-bindsym $mod+f exec firefox -P default
-bindsym $mod+Shift+f exec firefox -P default --private-window
+#bindsym $mod+g exec firefox -P carto 
+#bindsym $mod+Shift+g exec firefox -P carto --private-window
+
+bindsym $mod+f exec brave-browser --force-dark-mode  --profile-directory="Profile 1"
+bindsym $mod+Shift+f exec brave-browser --profile-directory="Profile 1" --incognito
+
+#bindsym $mod+f exec firefox -P default
+#bindsym $mod+Shift+f exec firefox -P default --private-window
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -249,6 +256,8 @@ for_window [class="Gedit"] floating enable
 for_window [class="Keepassx"] floating enable
 for_window [class="Yad"] floating enable
 for_window [class="Gnome-calculator"] floating enable
+for_window [class="com.gitlab.bitseater.meteo"] floating enable
+for_window [class="zoom"] floating enable
 
 # Assign apps to workspaces
 #assign [class="Skype"] 10
@@ -258,7 +267,6 @@ for_window [class="Gnome-calculator"] floating enable
 #assign [class="Spotify"] 2
 
 # -- AUTO STARTS ---
-
 exec unclutter
 
 # Indicators
@@ -276,16 +284,18 @@ exec --no-startup-id /home/jsanz/bin/i3-battery-popup
 exec sleep 10; /home/jsanz/bin/screens-select
 
 # 30 seconds
-#exec sleep 30; hexchat
-exec sleep 30; conky
+exec sleep 30; autokey
+exec --no-startup-id sleep 30; xsetroot -solid "#2e3440"
 
 # 2 minutes
-exec --no-startup-id sleep 115; nitrogen --restore
-exec sleep 120; run_keybase
+#exec --no-startup-id sleep 115; nitrogen --restore
+#exec sleep 120; run_keybase
 
 exec sleep 130; /home/jsanz/bin/backup-mail.sh
+exec sleep 130; /home/jsanz/bin/delete-tweets >> ~/bin/delete-tweets.log
 exec sleep 150; spotify
-#exec sleep 180; /home/jsanz/bin/franz/Franz
 
 exec sleep 240; synology-drive
+exec sleep 240; conky
 #exec sleep 180; stretchly
+
