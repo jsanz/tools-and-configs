@@ -80,16 +80,11 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = Noto Mono:size=9:antialias=true;0
-font-4 = Noto Color Emoji:scale=9:antialias=true;0
-font-5 = Noto Sans Symbols:scale=9:antialas=true;0
-font-6 = Fontawesome:scale=10;0
 
-;font-4 = siji:pixelsize=10;1
+
 modules-left = i3
 modules-center = xwindow
-;modules-center = mpd
-;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = wlan eth0 battery pulseaudio backlight-acpi filesystem memmory cpu temperature date
+modules-right = wlan eth0 battery pulseaudio backlight-acpi filesystem memory cpu temperature date menu-apps
 
 
 tray-position = right
@@ -173,7 +168,6 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
 
@@ -191,7 +185,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = HD %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -261,12 +255,6 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
 label-song-maxlen = 25
 label-song-ellipsis = true
 
@@ -275,6 +263,7 @@ type = internal/xbacklight
 output = eDP-1
 
 format = <label>
+format-underline = ${colors.nord3}
 label = BL %percentage%%
 
 bar-width = 10
@@ -297,100 +286,37 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format = <label> 
-;format-prefix = " "
-;format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.nord14}
-label = %percentage:2%%
-
-; Spacing between individual per-core ramps
-ramp-coreload-spacing = 1
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
-ramp-coreload-7 = █
+format-underline = ${colors.nord3}
+label = CPU %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format = <label> 
-;format = <label> <bar-used>
-;format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %gb_used%
-
-bar-used-indicator =
-bar-used-width = 8
-bar-used-foreground-0 = #55aa55
-bar-used-foreground-1 = #557755
-bar-used-foreground-2 = #f5a70a
-bar-used-foreground-3 = #ff5555
-bar-used-fill = ▐
-bar-used-empty = ▐
-bar-used-empty-foreground = #444444
-
-; Only applies if <ramp-used> is used
-ramp-used-0 = ▁
-ramp-used-1 = ▂
-ramp-used-2 = ▃
-ramp-used-3 = ▄
-ramp-used-4 = ▅
-ramp-used-5 = ▆
-ramp-used-6 = ▇
-ramp-used-7 = █
-
+format-underline = ${colors.nord3}
+label = RAM %gb_used%
 
 [module/wlan]
 type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
 format-connected-underline = ${colors.nord3} 
 label-connected = %essid% %signal%% %downspeed:2%
 
-
-;format-disconnected =
 format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = No wlan
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
 interface = enxa0cec8c0b146 
 interval = 3.0
 
-;label-connected = %local_ip%
 label-connected = %local_ip% %downspeed:9%
 
-;format-underline = ${colors.nord15}
-format-underline = #0a6cf5
-
+format-underline = ${colors.nord3}
 format-disconnected =
-
-;format-connected = <ramp-signal> <label-connected>
-
-;format-connected-prefix = "📡 "
-;format-connected-prefix-foreground = ${colors.foreground-alt}
-
-
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
 
 [module/date]
 type = internal/date
@@ -402,16 +328,13 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ${colors.nord10}
 
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-;format-volume = <label-volume> <bar-volume>
 format-volume = <label-volume>
 format-volume-underline= ${colors.nord3}
 format-muted-underline= ${colors.nord11}
@@ -420,52 +343,6 @@ label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = Muted
-;label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
-[module/alsa]
-type = internal/alsa
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -473,36 +350,14 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-label-charging = B %percentage%%
-label-discharging= B %time%
-label-full= B
+label-charging = BAT %percentage%%
+label-discharging= BAT %time%
+label-full= BAT 100%
 
-;format-charging = <label-charging>
 format-charging-underline = ${colors.nord3} 
-
-;format-discharging = <label-discharging>
 format-discharging-underline = ${colors.nord11}
-
-;format-full-prefix = " "
-;format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${colors.nord2}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
@@ -514,28 +369,26 @@ format-underline = ${colors.nord3}
 format-warn = <label-warn>
 format-warn-underline = ${colors.nord12}
 
-label = %temperature-c%
+label = TMP %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.nord11}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-[module/powermenu]
+[module/menu-apps]
 type = custom/menu
 
 expand-right = true
 
 format-spacing = 1
 
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-open = #
+label-open-foreground = ${colors.nord4}
+format-underline = ${colors.nord3}
+
+label-close = cancel
+label-close-foreground = ${colors.nord11}
+
 label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+label-separator-foreground = ${colors.nord13}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
