@@ -275,8 +275,20 @@ for_window [class="zoom"] floating enable
 #assign [class="spotify"] 2
 #assign [class="Spotify"] 2
 
+# COLORS
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #2E3440 #2E3440 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #3B4252 #3B4252 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+
 # -- AUTO STARTS ---
-exec polybar example
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec unclutter
 
 # Indicators

@@ -23,7 +23,7 @@ default_color='white',
 own_window_colour='white',
 alignment='top_right',
 gap_x=10,
-gap_y=37,
+gap_y=57,
 }
 
 conky.text = [[

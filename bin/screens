@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim: set ts=4 sts=4 sw=4 et:
 # Author: Ivan Mincik, ivan.mincik@gmail.com
 
 S_PRIMARY="eDP-1"
@@ -60,5 +61,4 @@ else
     xrandr --output $S_SECOND --auto --$1 $S_PRIMARY
 fi
 
-nitrogen --restore
-# vim: set ts=4 sts=4 sw=4 et:
+# nitrogen --restore
