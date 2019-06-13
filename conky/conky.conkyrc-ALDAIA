@@ -19,44 +19,58 @@ uppercase=false,
 stippled_borders=1,
 border_inner_margin=6,
 border_width=2,
-default_color='white',
 own_window_colour='white',
 alignment='top_right',
 gap_x=10,
 gap_y=57,
+
+
+
+default_color='D8DEE9',
+
+color1="2E3440",
+color2="3B4252",
+color3="434C5E",
+color4="4C566A",
+
+color5="D8DEE9",
+color6="E5E9F0",
+color7="ECEFF4",
+
+color8="A3BE8C",
 }
 
 conky.text = [[
-${color orange}CPU ${hr 2}$color
+${color8}CPU ${hr 2}$color
 ${freq}MHz  Load:${loadavg}  Tmp:${acpitemp}  Up:$color${uptime_short}
 $cpubar
-${cpugraph 000000 ffffff}
+${cpugraph 2E3440 D8DEE9}
 NAME              CPU%  NAME              MEM%
 ${top name 1} ${top cpu 1}  ${top_mem name 1} ${top mem 1}
 ${top name 2} ${top cpu 2}  ${top_mem name 2} ${top mem 2}
 ${top name 3} ${top cpu 3}  ${top_mem name 3} ${top mem 3}
 
-${color orange}MEMORIA / DISCOS ${hr 2}$color
+${color8}MEMORIA / DISCOS ${hr 2}$color
 RAM: $mem ${alignr}SWP: $swap
-${memgraph}
-${color orange}Root$color ${fs_free /} / ${fs_size /} ${alignr} ${color orange}Home$color ${fs_free /home} / ${fs_size /home}
+${memgraph 2E3440 D8DEE9}
+${color8}Root$color ${fs_free /} / ${fs_size /} ${alignr} ${color8}Home$color ${fs_free /home} / ${fs_size /home}
 
-${color orange}BATERÍA ${hr 2}$color
+${color8}BATERÍA ${hr 2}$color
 ${battery_percent BAT0}% - ${battery_time BAT0} ${battery_bar 6  BAT0}
 
-${color orange}RED  ${hr 2}$color
+${color8}RED  ${hr 2}$color
 LAN: ${addr enxa0cec8c0b146}  ${alignr} WLAN: ${addr wlp2s0}
 Down: $color${downspeed enxa0cec8c0b146} Up: ${upspeed enxa0cec8c0b146} ${alignr} Down: $color${downspeed wlp2s0} Up: ${upspeed wlp2s0}
-${downspeedgraph enxa0cec8c0b146 25,80 000000 ff0000} ${upspeedgraph enxa0cec8c0b146 25,80 000000 00ff00}$color ${alignr}${downspeedgraph wlp2s0 25,80 000000 ff0000} ${upspeedgraph wlp2s0 25,80 000000 00ff00}$color
+${downspeedgraph enxa0cec8c0b146 25,80 2E3440 D8DEE9} ${upspeedgraph enxa0cec8c0b146 25,80 2E3440 D8DEE9}$color ${alignr}${downspeedgraph wlp2s0 25,80 2E3440 D8DEE9} ${upspeedgraph wlp2s0 25,80 2E3440 D8DEE9}$color
 
-${color orange}LOGGING ${hr 2}$color
+${color8}LOGGING ${hr 2}$color
 ${execi 30 tail -n4 /var/log/syslog | awk '{print " ",$6,$7,$8,$9,$10,$11,$12,$13}'}
 
-${color orange}FORTUNE COOKIE ${hr 2}$color
+${color8}FORTUNE COOKIE ${hr 2}$color
 ${execi 120  fortune -s | fold -s -w 60 }
 
-${color orange}WEATHER ${hr 2}$color
-${execi 3600  curl "http://wttr.in/?0Tq" }
+${color8}WEATHER ${hr 2}$color
+${execi 3600  curl -s "http://wttr.in/?0Tq" }
 
 ]]
 
