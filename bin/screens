@@ -62,3 +62,6 @@ else
 fi
 
 # nitrogen --restore
+
+sleep 2
+i3-msg restart

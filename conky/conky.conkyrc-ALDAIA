@@ -49,6 +49,7 @@ NAME              CPU%  NAME              MEM%
 ${top name 1} ${top cpu 1}  ${top_mem name 1} ${top mem 1}
 ${top name 2} ${top cpu 2}  ${top_mem name 2} ${top mem 2}
 ${top name 3} ${top cpu 3}  ${top_mem name 3} ${top mem 3}
+${top name 4} ${top cpu 4}  ${top_mem name 4} ${top mem 4}
 
 ${color8}MEMORIA / DISCOS ${hr 2}$color
 RAM: $mem ${alignr}SWP: $swap
@@ -64,13 +65,7 @@ Down: $color${downspeed enxa0cec8c0b146} Up: ${upspeed enxa0cec8c0b146} ${alignr
 ${downspeedgraph enxa0cec8c0b146 25,80 2E3440 D8DEE9} ${upspeedgraph enxa0cec8c0b146 25,80 2E3440 D8DEE9}$color ${alignr}${downspeedgraph wlp2s0 25,80 2E3440 D8DEE9} ${upspeedgraph wlp2s0 25,80 2E3440 D8DEE9}$color
 
 ${color8}LOGGING ${hr 2}$color
-${execi 30 tail -n4 /var/log/syslog | awk '{print " ",$6,$7,$8,$9,$10,$11,$12,$13}'}
-
-${color8}FORTUNE COOKIE ${hr 2}$color
-${execi 120  fortune -s | fold -s -w 60 }
-
-${color8}WEATHER ${hr 2}$color
-${execi 3600  curl -s "http://wttr.in/?0Tq" }
+${execi 30 tail -n8 /var/log/syslog | awk '{print " ",$6,$7,$8,$9,$10,$11,$12,$13}'}
 
 ]]
 

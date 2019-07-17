@@ -84,7 +84,7 @@ font-3 = Noto Mono:size=9:antialias=true;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = wlan eth0 battery pulseaudio backlight-acpi filesystem memory cpu temperature date menu-apps
+modules-right = wlan eth battery pulseaudio backlight-acpi filesystem memory cpu temperature date menu-apps
 
 
 tray-position = right
@@ -139,7 +139,8 @@ font-6 = Fontawesome:scale=10;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = wlan eth0 battery pulseaudio backlight-acpi date
+modules-right = wlan eth battery pulseaudio backlight-acpi filesystem memory cpu temperature date menu-apps
+
 
 
 tray-position = right
@@ -185,7 +186,9 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = HD %percentage_used%%
+format = <label> 
+
+label-mounted = HD %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -294,7 +297,7 @@ type = internal/memory
 interval = 2
 format = <label> 
 format-underline = ${colors.nord3}
-label = RAM %gb_used%
+label = RAM %percentage_used%%
 
 [module/wlan]
 type = internal/network
@@ -307,6 +310,7 @@ label-connected = %essid% %signal%% %downspeed:2%
 
 format-disconnected = <label-disconnected>
 label-disconnected = No wlan
+format-disconnected-underline = ${colors.nord11}
 
 [module/eth]
 type = internal/network
@@ -315,15 +319,19 @@ interval = 3.0
 
 label-connected = %local_ip% %downspeed:9%
 
-format-underline = ${colors.nord3}
-format-disconnected =
+format-connected = <label-connected>
+format-connected-underline = ${colors.nord3} 
+
+format-disconnected = <label-disconnected>
+label-disconnected = No eth
+format-disconnected-underline = ${colors.nord11}
 
 [module/date]
 type = internal/date
 interval = 5
 
 date =
-date-alt = " %Y-%m-%d"
+date-alt = "%Y-%m-%d (%W)"
 
 time = %H:%M
 time-alt = %H:%M:%S
@@ -335,16 +343,22 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume>
+format-volume = <label-volume> <ramp-volume> 
 format-volume-underline= ${colors.nord3}
 format-muted-underline= ${colors.nord11}
 
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = Muted
+label-muted = 🔇 
+
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+
 
 [module/battery]
+
 type = internal/battery
 battery = BAT0
 adapter = AC
