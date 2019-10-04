@@ -272,4 +272,4 @@ rofi.theme:                          solarized
 ! rofi.me-accept-entry:                MouseDPrimary
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
-rofi.theme: /home/j/.config/rofi/custom-nord.rasi
+rofi.theme: /home/jsanz/.config/rofi/custom-nord.rasi

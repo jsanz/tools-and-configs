@@ -17,7 +17,8 @@
 [ -z $1 ] && echo "Need a number positive or negative to change screen brightness, exiting .." && exit
 
 #BFOLDER=/sys/class/backlight/acpi_video0
-BFOLDER=/sys/class/backlight/intel_backlight
+#BFOLDER=/sys/class/backlight/intel_backlight
+BFOLDER=/sys/class/backlight/nvidia_0
 
 NEWVAL=$[`cat $BFOLDER/actual_brightness` + $1 ]
 

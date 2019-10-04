@@ -25,7 +25,7 @@ Plugin 'kien/ctrlp.vim'
 
 Plugin 'tpope/vim-fugitive'
 
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
@@ -67,7 +67,7 @@ else
   colorscheme termschool
 "  colorscheme zenburn
 endif
-call togglebg#map("<F5>")
+" call togglebg#map("<F5>")
 
 
 let python_highlight_all=1

@@ -53,7 +53,7 @@ alert = ${colors.nord6}
 
 
 [bar/main]
-monitor = DP-1
+monitor = eDP-1
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -84,7 +84,7 @@ font-3 = Noto Mono:size=9:antialias=true;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = wlan eth battery pulseaudio backlight-acpi filesystem memory cpu temperature date menu-apps
+modules-right = wlan eth0 battery pulseaudio backlight-acpi filesystem memory cpu temperature date menu-apps
 
 
 tray-position = right
@@ -106,7 +106,7 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 [bar/dock]
-monitor = DP-2
+monitor = HDMI-1
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -139,7 +139,7 @@ font-6 = Fontawesome:scale=10;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = wlan eth battery pulseaudio backlight-acpi date
+modules-right = wlan eth0 battery pulseaudio backlight-acpi date
 
 
 tray-position = right
@@ -162,8 +162,7 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = [ %title% ]
-format-foreground= ${colors.nord13}
+label = %title:0:30:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -261,7 +260,7 @@ label-song-ellipsis = true
 
 [module/xbacklight]
 type = internal/xbacklight
-output = DP-2
+output = eDP-1
 
 format = <label>
 format-underline = ${colors.nord3}
@@ -311,18 +310,13 @@ label-disconnected = No wlan
 
 [module/eth]
 type = internal/network
-interface = enp0s31f6 
-unknown-as-up = true
-
+interface = enxa0cec8c0b146 
 interval = 3.0
 
-label-connected = LAN %linkspeed% %downspeed:9%
-label-disconnected = NO LAN
+label-connected = %local_ip% %downspeed:9%
 
-format-disconnected = <label-disconnected>
-
-format-connected-underline = ${colors.nord3}
-format-disconnected-underline = ${colors.nord11}
+format-underline = ${colors.nord3}
+format-disconnected =
 
 [module/date]
 type = internal/date
@@ -334,7 +328,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-underline = ${colors.nord11}
+format-underline = ${colors.nord10}
 
 label = %date% %time%
 
@@ -349,7 +343,6 @@ label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = Muted
-
 
 [module/battery]
 type = internal/battery

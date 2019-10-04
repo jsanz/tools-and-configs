@@ -2,14 +2,14 @@
 # vim: set ts=4 sts=4 sw=4 et:
 # Author: Ivan Mincik, ivan.mincik@gmail.com
 
-S_PRIMARY="eDP-1"
+S_PRIMARY="DP-2"
 
 S_OTHER=$(xrandr \
     | grep -v "^$S_PRIMARY" \
     | grep " connected" \
     | awk -F " " '{print $1}')
 
-S_SECOND=$(echo $S_OTHER | awk -F " " '{print $1}')
+S_SECOND="DP-0"
 #S_THIRD=$(echo $S_OTHER | awk -F " " '{print $2}')
 
 MODE='1360x768 '
