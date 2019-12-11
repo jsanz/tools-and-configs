@@ -12,7 +12,7 @@ conky.config={
     use_spacer='right',
     
     use_xft=true,
-    font='Bitstream Vera Sans Mono:size=7',
+    font='Menlo for Powerline:size=7',
     xftalpha=0.5,
     
     out_to_console=false,
@@ -63,13 +63,13 @@ ${memgraph 2E3440 D8DEE9}
 ${color8}BATTERY ${hr 2}$color
 ${battery_percent BAT0}% - ${battery_time BAT0} ${battery_bar 6  BAT0}
 
-${color8}RED  ${hr 2}$color
+${color8}NETWORK  ${hr 2}$color
 LAN: ${addr enp0s31f6}  ${alignr} WLAN: ${addr wlp2s0}
-Down: $color${downspeed enp0s31f6} Up: ${upspeed enp0s31f6} ${alignr}Down: $color${downspeed wlp2s0} Up: ${upspeed wlp2s0}
+Down: $color${downspeed enp0s31f6} Up: ${upspeed enp0s31f6}  ${alignr}Down: $color${downspeed wlp2s0} Up: ${upspeed wlp2s0}
 ${downspeedgraph enp0s31f6 25,80 2E3440 D8DEE9} ${upspeedgraph enp0s31f6 25,80 2E3440 D8DEE9}$color ${alignr}${downspeedgraph wlp2s0 25,80 2E3440 D8DEE9} ${upspeedgraph wlp2s0 25,80 2E3440 D8DEE9}$color
 
 ${color8}FORTUNE COOKIE ${hr 2}$color
-${execi 120  fortune -s | fold -s -w 60 }
+${execi 120  fortune -s | fold -s -w 50 }
 
 ${color8}WEATHER ${hr 2}$color
 ${execi 3600  curl -s "http://wttr.in/?0Tq" }

@@ -19,7 +19,7 @@ set $mod Mod4
 # chose an xft font, such as:
 #font xft:DejaVu Sans Mono 10
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono 7
+font pango:Noto Sans 9
 
 #font pango:SourceCodePro Sans Regular 10
 #font pango:Monospace 9
@@ -40,7 +40,7 @@ bindsym $mod+u exec --no-startup-id "rofi -show run -font \\"DejaVu 20\\" -run-s
 bindsym $mod+Shift+u exec dmenu_run
 
 # change focus
-bindsym $mod+r focus left
+bindsym $mod+h focus left
 bindsym $mod+t focus down
 bindsym $mod+n focus up
 bindsym $mod+s focus right
@@ -52,7 +52,7 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+r move left
+bindsym $mod+Shift+h move left
 bindsym $mod+Shift+t move down
 bindsym $mod+Shift+n move up
 bindsym $mod+Shift+s move right
@@ -67,7 +67,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+l split h
 
 # split in vertical orientation
-bindsym $mod+h split v
+bindsym $mod+Shift+l split v
 
 # enter fullscreen mode for the focused container
 #bindsym $mod+i fullscreen
@@ -75,13 +75,13 @@ bindsym $mod+h split v
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+o layout stacking
 bindsym $mod+comma layout tabbed
-bindsym $mod+ntilde layout toggle split
+#bindsym $mod+ntilde layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -90,16 +90,16 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 exec "i3-msg workspace 1; i3-msg scratchpad show"
-bindsym $mod+2 exec "i3-msg workspace 2; i3-msg scratchpad show"
-bindsym $mod+3 exec "i3-msg workspace 3; i3-msg scratchpad show"
-bindsym $mod+4 exec "i3-msg workspace 4; i3-msg scratchpad show"
-bindsym $mod+5 exec "i3-msg workspace 5; i3-msg scratchpad show"
-bindsym $mod+6 exec "i3-msg workspace 6; i3-msg scratchpad show"
-bindsym $mod+7 exec "i3-msg workspace 7; i3-msg scratchpad show"
-bindsym $mod+8 exec "i3-msg workspace 8; i3-msg scratchpad show"
-bindsym $mod+9 exec "i3-msg workspace 9; i3-msg scratchpad show"
-bindsym $mod+0 exec "i3-msg workspace 10; i3-msg scratchpad show"
+bindsym $mod+1 exec "i3-msg workspace 1"
+bindsym $mod+2 exec "i3-msg workspace 2"
+bindsym $mod+3 exec "i3-msg workspace 3"
+bindsym $mod+4 exec "i3-msg workspace 4"
+bindsym $mod+5 exec "i3-msg workspace 5"
+bindsym $mod+6 exec "i3-msg workspace 6"
+bindsym $mod+7 exec "i3-msg workspace 7"
+bindsym $mod+8 exec "i3-msg workspace 8"
+bindsym $mod+9 exec "i3-msg workspace 9"
+bindsym $mod+0 exec "i3-msg workspace 10"
 
 # assign workspaces to screens
 #workspace "9: im" output LVDS1
@@ -161,10 +161,14 @@ bindsym $mod+p mode "resize"
 
 # My settings
 
+# Change layouts
+bindsym $mod+Control 1 exec setxkbmap -layout us -variant dvorak-intl
+bindsym $mod+Control 2 exec setxkbmap -layout us -variant intl 
+
 # Volume keys
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec i3-audio-toggle
+# bindsym XF86AudioMute exec i3-audio-toggle
 
 # Brightness keys
 bindsym XF86MonBrightnessUp exec sudo /home/j/bin/brightness 20
@@ -183,8 +187,6 @@ bindsym $mod+Shift+v exec amixer -D pulse sset Master 5%-
 
 # start a file manager
 #bindsym $mod+z exec pcmanfm
-bindsym $mod+Shift+z exec nautilus --no-desktop /home/j/desktop
-
 #bindsym $mod+z exec xfe
 bindsym $mod+z exec xfe
 
@@ -199,7 +201,7 @@ bindsym $mod+Shift+c exec zenity --calendar
 
 # Start a browser
 bindsym $mod+g exec brave-browser --force-dark-mode  --profile-directory="Default"
-bindsym $mod+Shift+g exec brave-browser --profile-directory="Default" --incognito
+bindsym $mod+Shift+g exec brave-browser --profile-directory="Default" --incognito 
 
 #bindsym $mod+g exec firefox -P carto 
 #bindsym $mod+Shift+g exec firefox -P carto --private-window
@@ -225,7 +227,7 @@ bindsym $mod+Shift+p exec /home/j/bin/i3-power suspend
 bindsym $mod+Shift+y exec /home/j/bin/i3-power shutdown
 
 # Lock screen
-bindsym $mod+Control+l exec /home/j/bin/fancy-i3lock -c 000000
+bindsym $mod+Control+l exec xautolock -locknow
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+q restart
@@ -270,6 +272,8 @@ for_window [class="Gnome-calculator"] floating enable
 for_window [class="com.gitlab.bitseater.meteo"] floating enable
 for_window [class="zoom"] floating enable
 for_window [class="qasmixer"] floating enable
+for_window [class="Arandr"] floating enable
+for_window [class="ColorPicker"] floating enable
 
 # Assign apps to workspaces
 #assign [class="Skype"] 10
@@ -287,38 +291,36 @@ client.background       #ffffff
 
 
 # -- AUTO STARTS ---
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec unclutter
+exec_always --no-startup-id xset -dpms; xset s off
+exec_always --no-startup-id unclutter
+exec_always --no-startup-id gnome-keyring-daemon --start --components=pkcs11
+exec_always --no-startup-id input --set-prop "Logitech MX Ergo" 268 0.30
+exec_always --no-startup-id xss-lock -- /home/j/bin/fancy-i3lock
+exec_always --no-startup-id xautolock -time 30 -locker "/home/j/bin/fancy-i3lock" -corners "00-+" -notify 20 -notifier "notify-send -u critical 'ey!' 'Locking...'" -killtime 10 -killer "systemctl suspend"
 
-# Indicators
-exec nm-applet
-exec indicator-sound-switcher
-exec blueman-applet
-
-exec gnome-keyring-daemon --start --components=pkcs11
-
-# Set speed trackball
-exec xinput --set-prop "Logitech MX Ergo" 268 0.30
 
 # Battery popup
 # TODO exec --no-startup-id /home/j/bin/i3-battery-popup 
 
 # Delayed starts
-exec --no-startup-id sleep 5; xsetroot -solid "#2e3440"
-# TODO exec sleep 10; /home/j/bin/screens-select
+exec_always --no-startup-id sleep 5; xsetroot -solid "#2e3440"
+exec esleep 5; polybar laptop -r; polybar monitor -r
+
+exec sleep 7; /home/j/bin/screens-select
+
+# Indicators
+exec sleep 20; nm-applet; 
+exec sleep 20; indicator-sound-switcher;
+exec sleep 20; blueman-applet
 
 # 30 seconds
+exec sleep 30; rescuetime
 exec sleep 30; autokey
 
-# 2 minutes
-#exec --no-startup-id sleep 115; nitrogen --restore
-#exec sleep 120; run_keybase
-
 # TODO exec sleep 130; /home/j/bin/backup-mail.sh
-sleep 130; /home/j/bin/delete-tweets >> ~/bin/delete-tweets.log
+exec sleep 130; source /home/j/.pam_environment; /home/j/bin/delete-tweets >> ~/bin/delete-tweets.log
 
 exec sleep 240; synology-drive
-
-exec sleep 240; conky
+#exec sleep 240; conky
 #exec sleep 180; stretchly
 

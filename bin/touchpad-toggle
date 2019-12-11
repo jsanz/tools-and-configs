@@ -1,18 +1,15 @@
-#!/bin/sh
+#!/bin/bash
+# https://askubuntu.com/a/160549
 
-# toggle synaptic touchpad on/off
-# source: https://help.ubuntu.com/community/SynapticsTouchpad/ShortcutKey
-
-# get current state
-SYNSTATE=$(synclient -l | grep TouchpadOff | awk '{ print $3 }')
-
-# change to other state
-if [ $SYNSTATE = 0 ]; then
-    synclient touchpadoff=1
-elif [ $SYNSTATE = 1 ]; then
-    synclient touchpadoff=0
+declare -i ID
+ID=`xinput list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
+declare -i STATE
+STATE=`xinput list-props $ID|grep 'Device Enabled'|awk '{print $4}'`
+if [ $STATE -eq 1 ]
+then
+    xinput disable $ID
+    echo "Touchpad disabled."
 else
-    echo "Couldn't get touchpad status from synclient"
-    exit 1
+    xinput enable $ID
+    echo "Touchpad enabled."
 fi
-exit 0

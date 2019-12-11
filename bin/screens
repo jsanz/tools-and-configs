@@ -2,63 +2,54 @@
 # vim: set ts=4 sts=4 sw=4 et:
 # Author: Ivan Mincik, ivan.mincik@gmail.com
 
-S_PRIMARY="DP-2"
 
+S_PRIMARY="DP-2"
 S_OTHER=$(xrandr \
     | grep -v "^$S_PRIMARY" \
     | grep " connected" \
     | awk -F " " '{print $1}')
 
-S_SECOND="DP-0"
-#S_THIRD=$(echo $S_OTHER | awk -F " " '{print $2}')
-
-MODE='1360x768 '
-
 if [ -z "$1" ]; then
     xrandr
-
-elif [ "$1" == "singlehd" ]; then
-    echo "Setting active screens to '$S_PRIMARY'."
-    xrandr --output $S_PRIMARY --auto --primary
-
-
-    for s in $S_OTHER; do
-       xrandr --output $s --off
-    done
-
-elif [ "$1" == "single" ]; then
-    echo "Setting active screens to '$S_PRIMARY'."
-    xrandr --output $S_PRIMARY --mode $MODE --auto --primary
-
-
-    for s in $S_OTHER; do
-       xrandr --output $s --off
-    done
-
-elif [ "$1" == "monitor" ]; then
-    echo "Setting active screens to '$S_SECOND'"
-    xrandr --output $S_PRIMARY --off
-    xrandr --output $S_SECOND --auto --primary
-
-elif [ "$1" == "mirror" ]; then
-    echo "Setting active screens to '$S_PRIMARY' and '$S_SECOND'."
-    xrandr --output $S_PRIMARY --mode $MODE --auto --primary
-    xrandr --output $S_SECOND --auto --same-as $S_PRIMARY
-
-
-elif [ "$1" == "dock" ]; then
-   xrandr --output $S_SECOND --auto --above $S_PRIMARY --primary
-elif [ "$1" == "above" ]; then
-   xrandr --output $S_SECOND --auto --above $S_PRIMARY --primary
-elif [ "$1" == "left" ]; then
-   xrandr --output $S_SECOND --auto --left-of $S_PRIMARY --primary
-elif [ "$1" == "right" ]; then
-   xrandr --output $S_SECOND --auto --right-of $S_PRIMARY --primary
-
 else
-    echo "Setting active screens to '$S_PRIMARY' and '$S_SECOND'."
-    xrandr --output $S_PRIMARY --mode $MODE --auto --primary
-    xrandr --output $S_SECOND --auto --$1 $S_PRIMARY
+    # initial set up for laptop
+    killall polybar
+    # polybar laptop -r
+    setxkbmap -layout us -variant dvorak-intl
+
+    if [ "$1" == "single" ]; then
+        echo "Setting active screens to '$S_PRIMARY'."
+        for s in $S_OTHER; do
+            xrandr --output $s --off
+        done
+    else
+        # Set up the monitor settings
+        setxkbmap -layout us -variant intl
+        # polybar monitor -r
+        
+        if [ "$1" == "monitor" ]; then
+            echo "Setting active screens to '$S_OTHER'"
+            xrandr --output $S_PRIMARY --off
+            xrandr --output $S_OTHER --auto --primary
+        elif [ "$1" == "mirror" ]; then
+            echo "Setting mirror screens to '$S_PRIMARY' and '$S_OTHER'."
+            xrandr --output $S_PRIMARY --auto
+            xrandr --output $S_OTHER --auto --same-as $S_PRIMARY
+        elif [ "$1" == "above" ]; then
+            echo "Setting '$S_OTHER' above '$S_PRIMARY'"
+            xrandr --output $S_PRIMARY --auto
+            xrandr --output $S_OTHER --auto --above $S_PRIMARY --primary
+        elif [ "$1" == "left" ]; then
+            echo "Setting '$S_OTHER' left of '$S_PRIMARY'"
+            xrandr --output $S_PRIMARY --auto
+            xrandr --output $S_OTHER --auto --left-of $S_PRIMARY --primary
+        elif [ "$1" == "right" ]; then
+            echo "Setting '$S_OTHER' right of '$S_PRIMARY'"
+            xrandr --output $S_PRIMARY --auto
+            xrandr --output $S_OTHER --auto --right-of $S_PRIMARY --primary
+        else
+            echo "Don't know what to do"
+        fi
+    fi
 fi
 
-# nitrogen --restore

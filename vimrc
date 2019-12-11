@@ -25,7 +25,7 @@ Plugin 'kien/ctrlp.vim'
 
 Plugin 'tpope/vim-fugitive'
 
-"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
@@ -38,6 +38,8 @@ Plugin 'marcopaganini/termschool-vim-theme'
 
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+
+Plugin 'arcticicestudio/nord-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,10 +64,12 @@ nnoremap <space> za
 
 if has('gui_running')
   set background=dark
-  colorscheme solarized
+"  colorscheme solarized
+   colorscheme nord
 else
-  colorscheme termschool
+"  colorscheme termschool
 "  colorscheme zenburn
+   colorscheme nord
 endif
 " call togglebg#map("<F5>")
 
@@ -102,4 +106,4 @@ set completeopt-=preview
 
 
 set tabstop=4 shiftwidth=4 expandtab
-
+set nonumber

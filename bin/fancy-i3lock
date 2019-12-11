@@ -24,7 +24,7 @@ IMAGE=/tmp/i3lock.png
 BLURTYPE="5x3" # 3.80s
 # BLURTYPE="2x8" # 2.90s
 # BLURTYPE="2x3" # 2.92s
-LOGO="/home/j/drive/shared/images/icons/Elastic logo package/Elastic cluster/PNG/elastic-cluster-black.png"
+LOGO="/home/j/drive/shared/images/icons/wallpaper-logo.png"
 scrot $IMAGE
 
 convert $IMAGE -brightness-contrast -30x10 -level 0%,100%,0.6 -blur $BLURTYPE -gravity center - | composite -gravity center "$LOGO"  - $IMAGE
