@@ -25,7 +25,7 @@ else
     else
         # Set up the monitor settings
         setxkbmap -layout us -variant intl
-        # polybar monitor -r
+        polybar monitor -r
         
         if [ "$1" == "monitor" ]; then
             echo "Setting active screens to '$S_OTHER'"
@@ -52,4 +52,6 @@ else
         fi
     fi
 fi
+
+${HOME}/.fehbg
 

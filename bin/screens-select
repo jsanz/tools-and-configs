@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/usr/bin/bash
 
 ans=$(zenity  --list  --radiolist --height=280  \
 --title "screens-select" --text "Select a screen mode" \
@@ -8,9 +8,13 @@ FALSE single \
 FALSE left \
 FALSE right \
 FALSE above \
-FALSE mirror); 
+FALSE mirror \
+FALSE custom); 
 
-if [ ! -z "$ans" ]; then 
+if [ "$ans" = "custom" ]; then 
+  echo $ans
+  arandr
+elif [ ! -z "$ans" ]; then 
   echo $ans
   screens $ans 
 else 

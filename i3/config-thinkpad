@@ -34,10 +34,13 @@ workspace_layout default
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# switch between windows
+bindsym $mod+Shift+Return exec rofi-menu -w
+
 # start dmenu (a program launcher)
 # bindsym $mod+Shift+u exec i3-dmenu-desktop
 bindsym $mod+u exec --no-startup-id "rofi -show run -font \\"DejaVu 20\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
-bindsym $mod+Shift+u exec dmenu_run
+bindsym $mod+Shift+u exec rofi-menu -r
 
 # change focus
 bindsym $mod+h focus left
@@ -147,18 +150,6 @@ mode "resize" {
 
 bindsym $mod+p mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#    status_command i3status --config ~/.config/i3/i3status.conf
-#    #status_command /home/j/bin/i3status_custom
-#	position top
-#    mode hide
-#    hidden_state hide
-#    modifier Mod1
-#    bindsym --release button3 exec --no-startup-id import /tmp/latest-screenshot.png
-#}
-
 # My settings
 
 # Change layouts
@@ -178,8 +169,11 @@ bindsym XF86MonBrightnessDown exec sudo /home/j/bin/brightness -20
 #bindsym $mod+Shift+l exec sudo /home/j/bin/brightness -50
 
 # Calculator and sound mixer
-bindsym XF86Calculator exec gnome-calculator
-bindsym XF86Mail exec qasmixer
+bindsym XF86Calculator exec rofi-menu -q
+bindsym XF86Mail exec peek
+bindsym XF86Explorer exec nautilus
+bindsym XF86Favorites exec code
+bindsym XF86HomePage exec dmenu-uni emoji
 
 # Sound volume
 bindsym $mod+Shift+w exec amixer -D pulse sset Master 5%+
@@ -189,6 +183,7 @@ bindsym $mod+Shift+v exec amixer -D pulse sset Master 5%-
 #bindsym $mod+z exec pcmanfm
 #bindsym $mod+z exec xfe
 bindsym $mod+z exec xfe
+bindsym $mod+Shift+z exec nautilus
 
 # start code
 bindsym $mod+e exec code
@@ -219,20 +214,32 @@ bindsym $mod+minus scratchpad show
 
 # kill focused window
 bindsym $mod+Shift+comma kill
+
 # Close session
-bindsym $mod+Shift+period exec /home/j/bin/i3-power exit
+#bindsym $mod+Shift+period exec /home/j/bin/i3-power exit
+
 # supend and lock
-bindsym $mod+Shift+p exec /home/j/bin/i3-power suspend
-# Shutdown the computer (user has NOPASSWD set up at sudo config for this command)
-bindsym $mod+Shift+y exec /home/j/bin/i3-power shutdown
+#bindsym $mod+Shift+p exec /home/j/bin/i3-power suspend
 
 # Lock screen
-bindsym $mod+Control+l exec xautolock -locknow
+#bindsym $mod+Control+l exec xautolock -locknow
+
+# Shutdown the computer (user has NOPASSWD set up at sudo config for this command)
+#bindsym $mod+Shift+y exec /home/j/bin/i3-power shutdown
+
+# System menu
+bindsym $mod+Shift+y exec rofi-menu -l
+
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+q restart
 # reload the configuration file
 bindsym $mod+Shift+j reload
+
+# clipboard
+bindsym $mod+x exec rofi-menu -c
+# browser search
+bindsym $mod+b exec rofi-menu -b
 
 # assign workspaces to displays
 
@@ -303,8 +310,10 @@ exec_always --no-startup-id xautolock -time 30 -locker "/home/j/bin/fancy-i3lock
 # TODO exec --no-startup-id /home/j/bin/i3-battery-popup 
 
 # Delayed starts
+exec_always --no-startup-id sleep 5; greenclip daemon 
 exec_always --no-startup-id sleep 5; xsetroot -solid "#2e3440"
-exec esleep 5; polybar laptop -r; polybar monitor -r
+exec_always --no-startup-id sleep 5; sh ~/.fehbg
+exec sleep 5; polybar laptop -r
 
 exec sleep 7; /home/j/bin/screens-select
 

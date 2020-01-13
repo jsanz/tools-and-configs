@@ -17,6 +17,7 @@
 ;==========================================================
 
 
+;========================================================== COLORS
 [colors]
 ; Polar Night
 nord0 = #2E3440
@@ -52,6 +53,24 @@ primary = ${colors.nord0}
 secondary = ${colors.nord1}
 alert = ${colors.nord6}
 
+
+;========================================================== SETTINGS
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+
+;========================================================== GLOBAL WM
+[global/wm]
+margin-top = 1
+margin-bottom = 1
+
+
+;========================================================== BAR HDMI
 [bar/hdmi]
 monitor = HDMI-0
 width = 100%
@@ -84,7 +103,7 @@ font-3 = Noto Mono:size=9:antialias=true;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard pulseaudio kbdlayout wlan eth1 eth2 eth3 filesystem memory cpu temperature date menu-apps
+modules-right = xkeyboard pulseaudio kbdlayout eth1 eth2 eth3 filesystem memory cpu temperature date menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -100,6 +119,8 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+
+;========================================================== BAR MONITOR
 [bar/monitor]
 monitor = DP-1
 width = 100%
@@ -129,11 +150,9 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 font-3 = Noto Mono:size=9:antialias=true;0
 
-
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard pulseaudio kbdlayout wlan eth1 eth2 eth3 filesystem memory cpu temperature date menu-apps
-
+modules-right = xkeyboard pulseaudio kbdlayout eth1 eth2 eth3 filesystem memory cpu temperature date menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -149,6 +168,8 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+
+;========================================================== BAR MONITOR
 [bar/laptop]
 monitor = DP-2
 width = 100%
@@ -183,8 +204,7 @@ font-6 = Fontawesome:scale=10;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard pulseaudio kbdlayout wlan eth1 eth2 eth3 battery backlight-acpi filesystem memory cpu temperature date menu-apps
-
+modules-right = xkeyboard pulseaudio kbdlayout eth1 eth2 eth3 battery backlight-acpi filesystem memory cpu temperature date menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -200,61 +220,15 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+
+;========================================================== XWINDOW
 [module/xwindow]
 type = internal/xwindow
 label = [ %title% ]
 format-foreground= ${colors.nord13}
 
-[module/xkeyboard]
-type = internal/xkeyboard
 
-label-layout = %icon%
-label-indicator-padding = 0
-label-indicator-underline = ${colors.nord11}
-
-indicator-icon-default = 
-indicator-icon-0 = caps lock;;Caps
-indicator-icon-1 = scroll lock;;Scroll
-indicator-icon-2 = num lock;;Num
-
-label-indicator-on = %icon%
-label-indicator-off = 
-label-indicator-on-underline = ${colors.nord11}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = HD %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-format-mounted-underline = ${colors.nord3}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
+;========================================================== I3
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
@@ -293,13 +267,35 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 ; label-separator = |
 
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+;========================================================== XKEYBOARD
+[module/xkeyboard]
+type = internal/xkeyboard
 
-label-song-maxlen = 25
-label-song-ellipsis = true
+label-layout = %icon%
+label-indicator-padding = 0
+label-indicator-underline = ${colors.nord11}
 
+indicator-icon-default = 
+indicator-icon-0 = caps lock;;Caps
+indicator-icon-1 = scroll lock;;Scroll
+indicator-icon-2 = num lock;;Num
+
+label-indicator-on = %icon%
+label-indicator-off = 
+label-indicator-on-underline = ${colors.nord11}
+
+
+;========================================================== KBDLAYOUT
+[module/kbdlayout]
+type = custom/script
+exec = setxkbmap -query | grep variant | sed -e "s/variant:\ *//g"
+interval = 1
+
+label = %{A1:setxkbmap -layout us -variant dvorak-intl:}%{A3:setxkbmap -layout us -variant intl:}%output%%{A}%{A}
+label-underline = ${colors.nord3}
+
+
+;========================================================== BACKLIGHT
 [module/xbacklight]
 type = internal/xbacklight
 output = DP-2
@@ -308,104 +304,14 @@ format = <label>
 format-underline = ${colors.nord3}
 label = %{A4:sudo /home/j/bin/brightness 10:}%{A5:sudo /home/j/bin/brightness -10:}BL %percentage%%%{A}%{A}
 
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
 type = internal/backlight
 card = nvidia_0
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format = <label> 
-format-underline = ${colors.nord3}
-label = CPU %percentage:2%%
 
-[module/memory]
-type = internal/memory
-interval = 2
-format = <label> 
-format-underline = ${colors.nord3}
-label = RAM %gb_used%
-
-
-[module/eth1]
-type = internal/network
-interface = enxa0cec8c0b146 
-unknown-as-up = true
-interval = 3.0
-
-label-connected = USB LAN %downspeed:9%
-label-disconnected = 
-
-format-disconnected = <label-disconnected>
-format-connected-underline = ${colors.nord3}
-format-disconnected-underline = ${colors.nord11}
-
-[module/eth2]
-type = internal/network
-interface = enp0s31f6 
-unknown-as-up = true
-interval = 3.0
-
-label-connected = LAN %downspeed:9%
-label-disconnected = 
-
-format-disconnected = <label-disconnected>
-format-connected-underline = ${colors.nord3}
-format-disconnected-underline = ${colors.nord11}
-
-[module/eth3]
-type = internal/network
-interface = wlx001325ad37b1 
-unknown-as-up = true
-interval = 3.0
-
-label-connected = USB LAN %downspeed:9%
-label-disconnected = 
-
-format-disconnected = <label-disconnected>
-format-connected-underline = ${colors.nord3}
-format-disconnected-underline = ${colors.nord11}
-
-
-[module/date]
-type = internal/date
-interval = 5
-
-date =
-date-alt = " (%W) %Y-%m-%d %a"
-
-time = %H:%M
-time-alt = 
-
-format-underline = ${colors.nord11}
-
-label = %date% %time%
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume>
-format-volume-underline= ${colors.nord11}
-format-muted-underline= ${colors.nord11}
-
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = Muted
-
-
+;========================================================== BATTERY
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -421,6 +327,16 @@ format-discharging-underline = ${colors.nord11}
 format-full-underline = ${colors.nord2}
 
 
+;========================================================== CPU
+[module/cpu]
+type = internal/cpu
+interval = 2
+format = <label> 
+format-underline = ${colors.nord3}
+label = CPU %percentage:2%%
+
+
+;========================================================== TEMPERATURE
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
@@ -435,6 +351,104 @@ label = TMP %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.nord11}
 
+;========================================================== MEMORY
+[module/memory]
+type = internal/memory
+interval = 2
+format = <label> 
+format-underline = ${colors.nord3}
+label = RAM %gb_used%
+
+
+;========================================================== ETH1
+[module/eth1]
+type = internal/network
+interface = wlp82s0 
+unknown-as-up = true
+interval = 3.0
+
+label-connected = WLAN %downspeed:9%
+label-disconnected = 
+
+format-disconnected = <label-disconnected>
+format-connected-underline = ${colors.nord3}
+format-disconnected-underline = ${colors.nord11}
+
+
+;========================================================== ETH2
+[module/eth2]
+type = internal/network
+interface = enp0s31f6 
+unknown-as-up = true
+interval = 3.0
+
+label-connected = USB LAN %downspeed:9%
+label-disconnected = 
+
+format-disconnected = <label-disconnected>
+format-connected-underline = ${colors.nord3}
+format-disconnected-underline = ${colors.nord11}
+
+
+;========================================================== ETH3
+[module/eth3]
+type = internal/network
+interface = wlx001325ad37b1 
+unknown-as-up = true
+interval = 3.0
+
+label-connected = LAN %downspeed:9%
+label-disconnected = 
+
+format-disconnected = <label-disconnected>
+format-connected-underline = ${colors.nord3}
+format-disconnected-underline = ${colors.nord11}
+
+
+;========================================================== FILESYSTEM
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = HD %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+format-mounted-underline = ${colors.nord3}
+
+;========================================================== DATE
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " (%W) %Y-%m-%d %a"
+
+time = %H:%M
+time-alt = 
+
+format-underline = ${colors.nord11}
+
+label = %date% %time%
+
+
+;========================================================== PULSE AUDIO
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+format-volume-underline= ${colors.nord11}
+format-muted-underline= ${colors.nord11}
+
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = Muted
+
+
+;========================================================== MENU
 [module/menu-apps]
 type = custom/menu
 
@@ -442,7 +456,7 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = #
+label-open = ➡️
 label-open-foreground = ${colors.nord4}
 format-underline = ${colors.nord3}
 
@@ -452,42 +466,12 @@ label-close-foreground = ${colors.nord11}
 label-separator = |
 label-separator-foreground = ${colors.nord13}
 
-menu-0-0 = close
-menu-0-0-exec = menu-open-1
-menu-0-1 = reboot
-menu-0-1-exec = menu-open-2
-menu-0-2 = shutdown
-menu-0-2-exec = menu-open-3
+menu-0-0 = monitor
+menu-0-0-exec =  screens-select
+menu-0-1 = run
+menu-0-1-exec = rofi -show run
+menu-0-2 = app
+menu-0-2-exec = rofi-menu -r
+menu-0-4 = system
+menu-0-4-exec = rofi-menu -l
 
-
-menu-1-0 = ok
-menu-1-0-exec = i3-msg exit
-
-menu-2-0 = ok
-menu-2-1-exec = sudo reboot
-
-menu-3-0 = ok
-menu-3-1-exec = sudo poweroff
-
-[module/kbdlayout]
-type = custom/script
-exec = setxkbmap -query | grep variant | sed -e "s/variant:\ *//g"
-interval = 1
-
-label = %{A1:setxkbmap -layout us -variant dvorak-intl:}%{A3:setxkbmap -layout us -variant intl:}%output%%{A}%{A}
-label-underline = ${colors.nord3}
-
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
-
-[global/wm]
-margin-top = 1
-margin-bottom = 1
-
-
-; vim:ft=dosini
