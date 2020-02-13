@@ -223,6 +223,7 @@ bindsym $mod+Shift+comma kill
 
 # Lock screen
 #bindsym $mod+Control+l exec xautolock -locknow
+bindsym $mod+Control+l exec fancy-i3lock
 
 # Shutdown the computer (user has NOPASSWD set up at sudo config for this command)
 #bindsym $mod+Shift+y exec /home/j/bin/i3-power shutdown
@@ -281,6 +282,7 @@ for_window [class="zoom"] floating enable
 for_window [class="qasmixer"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="ColorPicker"] floating enable
+for_window [class="gnome-system-monitor"] floating enable
 
 # Assign apps to workspaces
 #assign [class="Skype"] 10
@@ -298,12 +300,13 @@ client.background       #ffffff
 
 
 # -- AUTO STARTS ---
+exec_always --no-startup-id compton
 exec_always --no-startup-id xset -dpms; xset s off
 exec_always --no-startup-id unclutter
 exec_always --no-startup-id gnome-keyring-daemon --start --components=pkcs11
 exec_always --no-startup-id input --set-prop "Logitech MX Ergo" 268 0.30
 exec_always --no-startup-id xss-lock -- /home/j/bin/fancy-i3lock
-exec_always --no-startup-id xautolock -time 30 -locker "/home/j/bin/fancy-i3lock" -corners "00-+" -notify 20 -notifier "notify-send -u critical 'ey!' 'Locking...'" -killtime 10 -killer "systemctl suspend"
+#exec_always --no-startup-id xautolock -time 30 -locker "/home/j/bin/fancy-i3lock" -corners "00-+" -notify 20 -notifier "notify-send -u critical 'ey!' 'Locking...'" -killtime 10 -killer "systemctl suspend"
 
 
 # Battery popup
@@ -325,6 +328,7 @@ exec sleep 20; blueman-applet
 # 30 seconds
 exec sleep 30; rescuetime
 exec sleep 30; autokey
+exec sleep 30; breaktimer 
 
 # TODO exec sleep 130; /home/j/bin/backup-mail.sh
 exec sleep 130; source /home/j/.pam_environment; /home/j/bin/delete-tweets >> ~/bin/delete-tweets.log
