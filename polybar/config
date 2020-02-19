@@ -107,7 +107,7 @@ modules-right = xkeyboard pulseaudio kbdlayout eth1 eth2 eth3 filesystem memory 
 
 tray-position = right
 tray-padding = 1
-;wm-restack = i3
+wm-restack = i3
 ;override-redirect = true
 
 scroll-up = i3wm-wsnext
@@ -153,7 +153,7 @@ modules-right = xkeyboard pulseaudio kbdlayout eth1 eth2 eth3 filesystem memory 
 
 tray-position = right
 tray-padding = 1
-;wm-restack = i3
+wm-restack = i3
 ;override-redirect = true
 
 scroll-up = i3wm-wsnext
@@ -309,8 +309,10 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
+time-format = %H:%M
+
 label-charging = BAT %percentage%%
-label-discharging= BAT %time%
+label-discharging = BAT %time% (%percentage%%)
 label-full= BAT 100%
 
 format-charging-underline = ${colors.nord3} 
