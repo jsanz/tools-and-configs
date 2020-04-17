@@ -1,77 +1,40 @@
-conky.config={
-    --own_window=true,
-    own_window_colour='white',
-    own_window_type='override',
-    own_window_transparent=true,
-    own_window_hints='undecorated,below,sticky,skip_taskbar,skip_pager',
-    
-    background=false,
-    maximum_width=700,
-    double_buffer=true,
-    
-    use_spacer='right',
-    
-    use_xft=true,
-    font='Menlo for Powerline:size=7',
-    xftalpha=0.5,
-    
-    out_to_console=false,
-    update_interval=1.0,
+# Simple clock and nothing else inspired by this more
+# complete configuration https://github.com/He4eT/conky-dashboard
 
-    draw_shades=false,
-    draw_outline=false,
-    draw_borders=false,
-    stippled_borders=1,
-    border_width=2,
-    border_inner_margin=6,
-    
-    uppercase=false,
-    
-    alignment='top_right',
-    gap_x=10,
-    gap_y=57,
-    
-    default_color='D8DEE9',
-    
-    color1="2E3440",
-    color2="3B4252",
-    color3="434C5E",
-    color4="4C566A",
-    
-    color5="D8DEE9",
-    color6="E5E9F0",
-    color7="ECEFF4",
-    
-    color8="A3BE8C",
-};
+background no
+update_interval 1
 
-conky.text = [[
-${color8}CPU ${hr 2}$color
-${freq}MHz  Load:${loadavg}  Tmp:${acpitemp}  Up:$color${uptime_short}
-$cpubar
-${cpugraph 2E3440 D8DEE9}
-${color8}NAME$color               ${color8}CPU%$color ${alignr}${color8}NAME$color               ${color8}MEM%$color
-${top name 1} ${top cpu 1}  ${alignr}${top_mem name 1} ${top mem 1}
-${top name 2} ${top cpu 2}  ${alignr}${top_mem name 2} ${top mem 2}
-${top name 3} ${top cpu 3}  ${alignr}${top_mem name 3} ${top mem 3}
-${top name 4} ${top cpu 4}  ${alignr}${top_mem name 4} ${top mem 4}
+double_buffer yes
 
-${color8}MEMORY / DISK ${hr 2}$color
-${color8}RAM:$color $mem ${color8}SWP:$color $swap  ${alignr}${color8}Root$color ${fs_free /}/${fs_size /} ${alignr} 
-${memgraph 2E3440 D8DEE9}
+# Window specifications #
+own_window_class Conky
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_colour 000000
+own_window_argb_value 0
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
+own_window_argb_visual yes
 
-${color8}BATTERY ${hr 2}$color
-${battery_percent BAT0}% - ${battery_time BAT0} ${battery_bar 6  BAT0}
+border_inner_margin 0
+border_outer_margin 0
 
-${color8}NETWORK  ${hr 2}$color
-LAN: ${addr enp0s31f6}  ${alignr} WLAN: ${addr wlp2s0}
-Down: $color${downspeed enp0s31f6} Up: ${upspeed enp0s31f6}  ${alignr}Down: $color${downspeed wlp2s0} Up: ${upspeed wlp2s0}
-${downspeedgraph enp0s31f6 25,80 2E3440 D8DEE9} ${upspeedgraph enp0s31f6 25,80 2E3440 D8DEE9}$color ${alignr}${downspeedgraph wlp2s0 25,80 2E3440 D8DEE9} ${upspeedgraph wlp2s0 25,80 2E3440 D8DEE9}$color
+minimum_size 400 400
+maximum_width 400
 
-${color8}FORTUNE COOKIE ${hr 2}$color
-${execi 120  fortune -s | fold -s -w 50 }
+alignment mm
+gap_x 0
+gap_y 0
 
-${color8}WEATHER ${hr 2}$color
-${execi 3600  curl -s "http://wttr.in/?0Tq" }
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
 
-]]
+
+# Lua Load #
+lua_load ~/.conky/conky_rings.lua
+lua_draw_hook_pre clock_rings
+
+TEXT
