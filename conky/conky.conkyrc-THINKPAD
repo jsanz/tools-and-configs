@@ -1,40 +1,43 @@
-# Simple clock and nothing else inspired by this more
-# complete configuration https://github.com/He4eT/conky-dashboard
+conky.config = {
+-- Simple clock and nothing else inspired by this more
+-- complete configuration https://github.com/He4eT/conky-dashboard
 
-background no
-update_interval 1
+	background = false,
+	update_interval = 1,
 
-double_buffer yes
+	double_buffer = true,
 
-# Window specifications #
-own_window_class Conky
-own_window yes
-own_window_type override
-own_window_transparent yes
-own_window_colour 000000
-own_window_argb_value 0
-own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
-own_window_argb_visual yes
+-- Window specifications #
+	own_window_class = 'Conky',
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	own_window_colour = '#000000',
+	own_window_argb_value = 0,
+	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+	own_window_argb_visual = true,
 
-border_inner_margin 0
-border_outer_margin 0
+	border_inner_margin = 0,
+	border_outer_margin = 0,
 
-minimum_size 400 400
-maximum_width 400
+	minimum_width = 400, minimum_height = 400,
+	maximum_width = 400,
 
-alignment mm
-gap_x 0
-gap_y 0
+	alignment = 'top_left',
+	gap_x = 100,
+	gap_y = 100,
 
-# Graphics settings #
-draw_shades no
-draw_outline no
-draw_borders no
-draw_graph_borders no
+-- Graphics settings #
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
 
 
-# Lua Load #
-lua_load ~/.conky/conky_rings.lua
-lua_draw_hook_pre clock_rings
+-- Lua Load #
+	lua_load = '~/.conky/conky_rings.lua',
+	lua_draw_hook_pre = 'clock_rings',
 
-TEXT
+};
+
+conky.text = '';

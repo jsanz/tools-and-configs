@@ -32,14 +32,15 @@ floating_modifier $mod
 workspace_layout default
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # switch between windows
 bindsym $mod+Shift+Return exec rofi-menu -w
 
 # start dmenu (a program launcher)
 # bindsym $mod+Shift+u exec i3-dmenu-desktop
-bindsym $mod+u exec --no-startup-id "rofi -show run -font \\"DejaVu 20\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+u exec --no-startup-id "rofi -show run -font \\"DejaVu 20\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -\\"'"
 bindsym $mod+Shift+u exec rofi-menu -r
 
 # change focus
@@ -73,7 +74,7 @@ bindsym $mod+l split h
 bindsym $mod+Shift+l split v
 
 # enter fullscreen mode for the focused container
-#bindsym $mod+i fullscreen
+bindsym $mod+semicolon fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+o layout stacking
@@ -169,7 +170,7 @@ bindsym XF86MonBrightnessDown exec sudo /home/j/bin/brightness -20
 #bindsym $mod+Shift+l exec sudo /home/j/bin/brightness -50
 
 # Calculator and sound mixer
-bindsym XF86Calculator exec rofi-menu -q
+bindsym XF86Calculator exec gnome-calculator
 bindsym XF86Mail exec peek
 bindsym XF86Explorer exec nautilus
 bindsym XF86Favorites exec code
@@ -188,6 +189,9 @@ bindsym $mod+Shift+z exec nautilus
 
 # start code
 bindsym $mod+e exec code
+
+# start portfolioPerformance
+bindsym $mod+Shift+p exec portfolioPerformance
 
 # start flameshot
 bindsym Print exec flameshot gui 
@@ -284,6 +288,7 @@ for_window [class="qasmixer"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="ColorPicker"] floating enable
 for_window [class="gnome-system-monitor"] floating enable
+for_window [instance="i3-quaketerm"] border none floating enable
 
 # Assign apps to workspaces
 #assign [class="Skype"] 10
@@ -319,7 +324,7 @@ exec_always --no-startup-id sleep 5; xsetroot -solid "#2e3440"
 exec_always --no-startup-id sleep 5; sh ~/.fehbg
 exec sleep 5; polybar laptop -r
 
-exec sleep 7; /home/j/bin/screens-select
+#exec sleep 7; /home/j/bin/screens-select
 
 # Indicators
 exec sleep 20; nm-applet; 
@@ -330,11 +335,10 @@ exec sleep 20; blueman-applet
 exec sleep 30; rescuetime
 exec sleep 30; autokey
 exec sleep 30; breaktimer 
+exec sleep 30; conky-desktop
 
 # TODO exec sleep 130; /home/j/bin/backup-mail.sh
-exec sleep 130; source /home/j/.pam_environment; /home/j/bin/delete-tweets >> ~/bin/delete-tweets.log
+# exec sleep 130; source /home/j/.pam_environment; /home/j/bin/delete-tweets >> ~/bin/delete-tweets.log
 
 exec sleep 240; synology-drive
-#exec sleep 240; conky
-#exec sleep 180; stretchly
-
+exec sleep 240; /opt/urserver

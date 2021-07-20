@@ -1,0 +1,31 @@
+conky.config = {
+    background=false,
+    update_interval=1,
+    double_buffer=true,
+    own_window_class='Conky',
+    own_window=true,
+    own_window_type='override',
+    own_window_transparent=true,
+    own_window_colour='000000',
+    own_window_argb_value=0,
+    own_window_hints='undecorated,sticky,skip_taskbar,skip_pager,below',
+    own_window_argb_visual=yes,
+    border_inner_margin=0,
+    -- border_outer_margin=0,
+    -- minimum_size='400 400',
+    -- maximum_width=800,
+    alignment='bottom_left',
+    gap_x=100,
+    gap_y=100,
+    draw_shades=false,
+    draw_outline=false,
+    draw_borders=false,
+    draw_graph_borders=false,
+    font='Noto Sans Mono Condensed:size=15',
+    use_xft=true,
+    xftalpha=0.5,
+
+	color0 = 'b48ead'; --'d8dee9',-- PowderBlue
+	color1 = '4c566a',-- LightSlateGray
+ }
+ conky.text = [[${goto 28}${color1}${execpi 1800 LAR=`date +%-d`; LC_ALL=C ncal -Mbh | sed -e 's/\<'$LAR'\>/${color0}&${color1}/' | sed ':a;N;$!ba;s/\n/\n${goto 28}/g'}${color}${font}]]

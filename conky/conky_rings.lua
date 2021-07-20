@@ -3,9 +3,9 @@ settings_table = {
         name='time',
         arg='%M.%S',
         max=60,
-        bg_colour=0xD8DEE9,
+        bg_colour=0x4c566a,--D8DEE9,
         bg_alpha=1,
-        fg_colour=0xFFFFFF,
+        fg_colour=0x4c566a,
         fg_alpha=0,
         x=200, y=200,
         radius=170,
@@ -77,7 +77,7 @@ function draw_clock_hands(cr,xc,yc)
     
     cairo_set_line_cap(cr,CAIRO_LINE_CAP_ROUND)
     cairo_set_line_width(cr,5)
-    cairo_set_source_rgba(cr,0.84,0.87,1.0,0.91)
+    cairo_set_source_rgba(cr,0.298,0.337,0.416,1.0)
     cairo_stroke(cr)
     
     -- Draw minute hand

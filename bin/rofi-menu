@@ -64,7 +64,7 @@ while getopts ":hvqwcbrl" opt; do
                 -hide-scrollbar -eh 1 -line-padding 4 -padding 20 -lines 4)
             case "$ANS" in
                 *Lock) fancy-i3lock ;;
-                *Suspend) systemctl suspend;;
+                *Suspend) sh ~/.screenlayout/both.sh && systemctl suspend;;
                 *Logout) i3-msg exit ;;
                 *Reboot) systemctl reboot ;;
                 *Shutdown) systemctl -i poweroff

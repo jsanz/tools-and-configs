@@ -15,7 +15,6 @@ else
     # initial set up for laptop
     killall polybar
     # polybar laptop -r
-    setxkbmap -layout us -variant dvorak-intl
 
     if [ "$1" == "single" ]; then
         echo "Setting active screens to '$S_PRIMARY'."
@@ -24,7 +23,6 @@ else
         done
     else
         # Set up the monitor settings
-        setxkbmap -layout us -variant intl
         polybar monitor -r
         
         if [ "$1" == "monitor" ]; then
