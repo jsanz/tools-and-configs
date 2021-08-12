@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 1 ]
+then
+  echo "Usage: zenkraken [balance|orders|tickers]"
+  exit
+fi
+
+case "$1" in
+
+balance )
+  clikraken balance | zenity --text-info --font monospace --height 250
+  ;;
+
+orders )
+  clikraken olist | zenity --text-info --font monospace --height 250
+  ;;
+
+tickers )
+  clikraken ticker | zenity --text-info --font "monospace 8" --height 300 --width 800
+  ;;
+
+* )
+  echo "Usage: zenkraken [balance|orders|tickers]"
+  ;;
+esac
+
