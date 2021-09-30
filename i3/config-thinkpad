@@ -289,9 +289,9 @@ for_window [class="Arandr"] floating enable
 for_window [class="ColorPicker"] floating enable
 for_window [class="gnome-system-monitor"] floating enable
 for_window [instance="i3-quaketerm"] border none floating enable
+for_window [title="Battery Warning"] sticky enable
 
-# Assign apps to workspaces
-#assign [class="Skype"] 10
+
 
 # COLORS
 
@@ -316,7 +316,7 @@ exec_always --no-startup-id xss-lock -- /home/j/bin/fancy-i3lock
 
 
 # Battery popup
-# TODO exec --no-startup-id /home/j/bin/i3-battery-popup 
+exec --no-startup-id /home/j/bin/i3-battery-popup -L 10 -m "Battery is getting low!!" -s "/usr/share/sounds/Yaru/stereo/battery-low.oga" -D -t 10s -v 100 -N
 
 # Delayed starts
 exec_always --no-startup-id sleep 5; greenclip daemon 

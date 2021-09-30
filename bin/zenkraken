@@ -2,7 +2,7 @@
 
 if [ $# -lt 1 ]
 then
-  echo "Usage: zenkraken [balance|orders|tickers]"
+  echo "Usage: zenkraken [balance|trades|orders|tickers|cancel-all]"
   exit
 fi
 
@@ -12,16 +12,34 @@ balance )
   clikraken balance | zenity --text-info --font monospace --height 250
   ;;
 
+trades )
+  clikraken --csv trades \
+      | csvcut -d ';' -c 'time,pair,type,ordertype,vol,price,cost,fee' \
+      | csvsort -c time -r \
+      | head -n5 \
+      | csvtomd \
+      |  zenity --text-info --font monospace --height 250 --width 900
+  ;;
+
 orders )
-  clikraken olist | zenity --text-info --font monospace --height 250
+  clikraken --csv olist | csvtomd -d ";"| zenity --text-info --font monospace --height 200 --width 1100
   ;;
 
 tickers )
   clikraken ticker | zenity --text-info --font "monospace 8" --height 300 --width 800
   ;;
 
+cancel-all )
+  result=""
+  for i in $(clikraken --raw olist | jq -r ".result.open | keys[]"); do 
+      cancel_result=$(clikraken cancel "${i}")
+      result="${result}${cancel_result}\r"; 
+  done
+  echo -ne "${result}" | zenity --text-info --font monospace --height 200 --width 800
+  ;;
+
 * )
-  echo "Usage: zenkraken [balance|orders|tickers]"
+  echo "Usage: zenkraken [balance|trades|orders|tickers|cancel-all]"
   ;;
 esac
 

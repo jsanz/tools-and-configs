@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 1 ]
+then
+  echo "Usage: kraken-order volume_eu percentage_down"
+  exit
+fi
+
+volume_fiat=$1
+limit_pct=$2
+last_price=$(clikraken --raw ticker -p XBTEUR | jq -r ".result.XXBTZEUR.c[0]")
+
+echo "Last BTC price is: ${last_price}€"
+
+price_float=$(echo "scale=6; ${last_price} * (1.0-(${limit_pct}/100.0))" | bc )
+price_int=${price_float%.*}
+
+volume_btc=$(echo "scale=8; $volume_fiat / $price_int" | bc)
+
+echo "BTC limit price is: ${price_int}€ (-${limit_pct}%)"
+echo "BTC volume to purchase is: ${volume_btc}BTC (${volume_fiat})"
+
+command="place -p XBTEUR -t limit buy $volume_btc $price_int"
+
+validate_json=$(clikraken --raw ${command} -v 2>/dev/null)
+validate=$(echo "${validate_json}"| jq -r ".error | length")
+
+if [ $validate -eq "0" ]; then
+  echo ""
+  echo "Order parameters are valid"
+  command_json=$(clikraken --raw ${command} 2>/dev/null) 
+  
+  if [ "$(echo "${command_json}" | jq -r ".error | length")" -eq "0" ]; then
+    echo "$command_json" | jq -r ".result.descr.order"
+    echo "$command_json" | jq -r ".result.txid[]"
+  else
+      echo ""
+      echo "Order not executed:"
+      echo "${command_json}" | jq -r ".error[]"
+  fi
+else
+  echo ""
+  echo "Order not validated. There's an error in the following command:"
+  echo "clikraken ${command}"
+  echo ""
+  echo "Kraken error:"
+  echo "${validate_json}" | jq -r ".error[]"
+
+fi
+
