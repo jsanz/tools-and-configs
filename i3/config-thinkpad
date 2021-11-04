@@ -171,7 +171,7 @@ bindsym XF86MonBrightnessDown exec sudo /home/j/bin/brightness -20
 
 # Calculator and sound mixer
 bindsym XF86Calculator exec gnome-calculator
-bindsym XF86Mail exec peek
+bindsym XF86Mail exec flameshot gui
 bindsym XF86Explorer exec nautilus
 bindsym XF86Favorites exec code
 bindsym XF86HomePage exec dmenu-uni emoji
@@ -246,6 +246,14 @@ bindsym $mod+Shift+j reload
 bindsym $mod+x exec rofi-menu -c
 # browser search
 bindsym $mod+b exec rofi-menu -b
+
+# arandr
+bindsym $mod+d exec arandr-laptop
+bindsym $mod+Shift+d exec arandr-coworking
+bindsym $mod+Control+d exec arandr-aldaia
+
+bindsym $mod+Shift+e exec --no-startup-id alacritty -t floating-jrnl -e jrnl
+for_window[title="floating *"] floating enable
 
 # assign workspaces to displays
 

@@ -1,12 +1,14 @@
 #!/bin/sh
 
 USER="jsanz"
-TOKEN="$(cat ${HOME}/.config/polybar/github)"
+TOKEN="$(cat "${HOME}/.config/polybar/github")"
 
-notifications=$(echo "user = \"$USER:$TOKEN\"" | curl -sf -K- https://api.github.com/notifications | jq ".[].unread" | grep -c true)
+data=$(echo "user = \"$USER:$TOKEN\"" | curl -sf -K- "https://api.github.com/notifications") 
 
-if [ "$notifications" -gt 0 ]; then
-    echo "$notifications"
+all_notifications=$(echo "${data}" | jq -r ". | length")
+
+if [ "$all_notifications" -gt 0 ]; then
+    echo "${all_notifications}"
 else
     echo ""
 fi

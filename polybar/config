@@ -104,7 +104,7 @@ font-4 = "Noto Color Emoji:style=Regular:size=9"
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard date pulseaudio eth1 eth2 eth3 battery filesystem memory cpu temperature menu-apps
+modules-right = xkeyboard date pulseaudio eth1 eth2 eth3 filesystem memory cpu temperature battery menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -158,7 +158,7 @@ font-4 = Fontawesome:scale=4;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 battery filesystem memory cpu temperature menu-apps
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -171,6 +171,59 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+
+;========================================================== BAR DOCK-HDMI
+[bar/dock-hdmi]
+monitor = DP-1.2
+bottom = false
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 5%
+radius = 0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+
+border-size = 2
+border-top-size = 6
+border-color = ${colors.nord0}
+
+padding-left = 0
+padding-right = 4
+
+module-margin-left = 0
+module-margin-right = 1
+
+;font-0 = fixed:pixelsize=10;1
+;font-0 = unifont:fontformat=truetype:size=10:antialias=false;0
+;font-0 = Noto Mono:size=10:antialias=true;0
+
+font-0 = "Cascadia Mono:style=Regular:size=11"
+font-1 = siji:pixelsize=8;1
+font-2 = Noto Color Emoji:scale=14:antialias=true;0
+font-3 = Noto Sans Symbols:scale=4:antialas=true;0
+font-4 = Fontawesome:scale=4;0
+
+modules-left = i3
+modules-center = xwindow
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery menu-apps
+
+tray-position = right
+tray-padding = 1
+wm-restack = i3
+;override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
 
 ;========================================================== BAR LAPTOP
 [bar/laptop]
@@ -194,8 +247,8 @@ border-color = ${colors.nord0}
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 1
 
 font-0 = "Cascadia Mono:style=Regular:size=11"
 font-1 = siji:pixelsize=8;1
@@ -205,7 +258,7 @@ font-4 = Fontawesome:scale=4;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard date pulseaudio eth1 eth2 eth3 battery backlight-acpi filesystem memory cpu temperature  menu-apps
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 backlight-acpi filesystem memory cpu temperature  battery menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -336,7 +389,7 @@ type = internal/cpu
 interval = 2
 format = <label> 
 format-underline = ${colors.nord3}
-label = 🧠 %percentage:2%%
+label = %percentage:2%%
 
 
 ;========================================================== TEMPERATURE
@@ -350,7 +403,7 @@ format-underline = ${colors.nord3}
 format-warn = <label-warn>
 format-warn-underline = ${colors.nord12}
 
-label = 🌡️ %temperature-c%
+label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.nord11}
 
@@ -360,7 +413,7 @@ type = internal/memory
 interval = 2
 format = <label>
 format-underline = ${colors.nord3}
-label = ✨ %gb_used%
+label = %gb_used%
 
 ; Only applies if <ramp-used> is used
 ramp-used-0 = ▁
@@ -440,7 +493,7 @@ interval = 5
 date =
 date-alt = "📅 (%V) %Y-%m-%d %a"
 
-time = "⌚ %H:%M "
+time = "%H:%M "
 time-alt = 
 
 format-underline = ${colors.nord13}
