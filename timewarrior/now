@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import sys
+import datetime
+import pytz
+from timewreport.parser import TimeWarriorParser
+
+def formatTimeDelta(delta):
+    return  ":".join(str(delta).split(':')[:2])
+
+parser = TimeWarriorParser(sys.stdin)
+intervals = parser.get_intervals()
+
+openIntervals = list(filter(lambda f: f.is_open(), intervals))
+
+todayTasks = "stopped"
+
+if len(openIntervals) > 0:
+    openInterval = openIntervals[0]
+    tags = ",".join(openInterval.get_tags())
+    since = openInterval.get_start()
+    nDate = datetime.datetime.now(tz=pytz.timezone("Europe/Madrid"))
+    delta = nDate - since
+    diff = formatTimeDelta(delta)
+    todayTasks = f'{tags} | {diff}'
+
+def isOpenAndToday(interval):
+    return (not interval.is_open()) and interval.get_start().date() == datetime.date.today()
+
+
+todayIntervals = filter(isOpenAndToday, intervals)
+durations = map(lambda f: f.get_duration(),todayIntervals)
+totalDuration = formatTimeDelta(sum(durations,datetime.timedelta()))
+
+print(f'{todayTasks} | {totalDuration}')
