@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Starting to monitor gdbus..."
+gdbus monitor -y -d org.freedesktop.login1 | ( while true; do read X;
+	if [ ! -z "$X" ]; then
+		line=$(echo $X | grep -o "{'LockedHint':\ <.*>}"); 
+		if [ ! -z "$line" ]; then 
+			isLocked=$(echo $line | sed -n "s/.*<\(.*\)>.*/\1/p")
+			if [ "$isLocked" == "true" ]; then 
+				echo "Stopping timew"
+				timew stop
+			elif [ "$isLocked" == "false" ]; then
+				echo "Continuing timew" 
+				timew continue @1
+			else 
+				echo "Line [${line}] not processed"
+			fi
+		fi
+	fi
+sleep 1
+done
+)

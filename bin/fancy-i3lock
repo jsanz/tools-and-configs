@@ -25,11 +25,22 @@ BLURTYPE="5x3" # 3.80s
 # BLURTYPE="2x8" # 2.90s
 # BLURTYPE="2x3" # 2.92s
 LOGO="/home/j/drive/shared/images/icons/wallpaper-logo.png"
+
+# Take a screenshot
 scrot $IMAGE
 
+# Compose the lock image
 convert $IMAGE -brightness-contrast -30x10 -level 0%,100%,0.6 -blur $BLURTYPE -gravity center - | composite -gravity center "$LOGO"  - $IMAGE
 
+# Pause dunst
+killall -SIGUSR1 dunst && touch /tmp/dunst-paused
+
+# Start the lock
 i3lock -i $IMAGE
 
+# Remove the image
 rm $IMAGE
+
+# Restart dunst
+killall -SIGUSR2 dunst && rm -f /tmp/dunst-paused
 )

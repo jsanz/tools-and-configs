@@ -32,8 +32,8 @@ floating_modifier $mod
 workspace_layout default
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec alacritty
 
 # switch between windows
 bindsym $mod+Shift+Return exec rofi-menu -w
@@ -329,7 +329,7 @@ exec --no-startup-id /home/j/bin/i3-battery-popup -L 10 -m "Battery is getting l
 # Delayed starts
 exec_always --no-startup-id sleep 5; greenclip daemon 
 exec_always --no-startup-id sleep 5; xsetroot -solid "#2e3440"
-exec_always --no-startup-id sleep 5; sh ~/.fehbg
+exec_always --no-startup-id sleep 5; fehbg
 exec sleep 5; polybar laptop -r
 
 #exec sleep 7; /home/j/bin/screens-select

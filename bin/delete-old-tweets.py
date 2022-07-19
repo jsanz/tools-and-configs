@@ -47,7 +47,7 @@ def get_tweets(api=None, screen_name=None):
 
 
 if __name__ == "__main__":
-    DAYS = 30
+    DAYS = 10
     BACKUP_DB = os.getenv("TW_BACKUP")
 
     logger.info("Removing tweets older than {} days".format(DAYS))

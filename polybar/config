@@ -104,7 +104,7 @@ font-4 = "Noto Color Emoji:style=Regular:size=9"
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard date pulseaudio eth1 eth2 eth3 filesystem memory cpu temperature battery menu-apps
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery dunst menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -118,8 +118,62 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 
-;========================================================== BAR MONITOR
-[bar/monitor]
+;========================================================== BAR MONITOR DP0
+[bar/monitor-dp0]
+monitor = DP-0
+bottom = false
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 5%
+radius = 0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+
+border-size = 2
+border-top-size = 6
+border-color = ${colors.nord0}
+
+padding-left = 0
+padding-right = 4
+
+module-margin-left = 0
+module-margin-right = 1
+
+;font-0 = fixed:pixelsize=10;1
+;font-0 = unifont:fontformat=truetype:size=10:antialias=false;0
+;font-0 = Noto Mono:size=10:antialias=true;0
+
+font-0 = "Cascadia Mono:style=Regular:size=11"
+font-1 = siji:pixelsize=8;1
+font-2 = Noto Color Emoji:scale=14:antialias=true;0
+font-3 = Noto Sans Symbols:scale=4:antialas=true;0
+font-4 = Fontawesome:scale=4;0
+
+modules-left = i3
+modules-center = xwindow
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery dunst menu-apps
+
+tray-position = right
+tray-padding = 1
+wm-restack = i3
+;override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+;========================================================== BAR MONITOR DP1
+[bar/monitor-dp1]
 monitor = DP-1
 bottom = false
 width = 100%
@@ -158,7 +212,7 @@ font-4 = Fontawesome:scale=4;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery menu-apps
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery dunst menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -171,9 +225,61 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+;========================================================== BAR MONITOR DP11
+[bar/monitor-dp11]
+monitor = DP-1.1
+bottom = false
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 5%
+radius = 0
+fixed-center = false
 
-;========================================================== BAR DOCK-HDMI
-[bar/dock-hdmi]
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+
+border-size = 2
+border-top-size = 6
+border-color = ${colors.nord0}
+
+padding-left = 0
+padding-right = 4
+
+module-margin-left = 0
+module-margin-right = 1
+
+;font-0 = fixed:pixelsize=10;1
+;font-0 = unifont:fontformat=truetype:size=10:antialias=false;0
+;font-0 = Noto Mono:size=10:antialias=true;0
+
+font-0 = "Cascadia Mono:style=Regular:size=11"
+font-1 = siji:pixelsize=8;1
+font-2 = Noto Color Emoji:scale=14:antialias=true;0
+font-3 = Noto Sans Symbols:scale=4:antialas=true;0
+font-4 = Fontawesome:scale=4;0
+
+modules-left = i3
+modules-center = xwindow
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery dunst menu-apps
+
+tray-position = right
+tray-padding = 1
+wm-restack = i3
+;override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;========================================================== BAR MONITOR DP12
+[bar/monitor-dp12]
 monitor = DP-1.2
 bottom = false
 width = 100%
@@ -212,7 +318,7 @@ font-4 = Fontawesome:scale=4;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery menu-apps
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 filesystem memory cpu temperature battery dunst menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -258,7 +364,7 @@ font-4 = Fontawesome:scale=4;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 backlight-acpi filesystem memory cpu temperature  battery menu-apps
+modules-right = xkeyboard date pulseaudio github eth1 eth2 eth3 backlight-acpi filesystem memory cpu temperature dunst battery menu-apps
 
 tray-position = right
 tray-padding = 1
@@ -565,3 +671,17 @@ label = %output:0:15:...%
 ; Available tokens:
 ;   %counter%
 ;   %pid%
+
+
+;========================================================== DUNST
+[module/dunst]
+type = custom/script
+exec = ~/.config/polybar/scripts/notification-dunst.sh
+interval = 10
+
+format = <label>
+format-underline = ${colors.nord11}
+
+label = %output:0:15:...%
+
+click-left = /home/j/bin/dunst-toggle
