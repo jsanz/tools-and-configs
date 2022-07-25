@@ -4,6 +4,9 @@ import datetime
 import pytz
 from timewreport.parser import TimeWarriorParser
 
+def isOpenAndToday(interval):
+    return (not interval.is_open()) and interval.get_start().date() == datetime.date.today()
+
 def formatTimeDelta(delta):
     return  ":".join(str(delta).split(':')[:2])
 
@@ -12,23 +15,26 @@ intervals = parser.get_intervals()
 
 openIntervals = list(filter(lambda f: f.is_open(), intervals))
 
-todayTasks = "stopped"
+todayTasks = "🛑 stopped"
+lastDuration = 0
 
-if len(openIntervals) > 0:
-    openInterval = openIntervals[0]
-    tags = ",".join(openInterval.get_tags())
-    since = openInterval.get_start()
-    nDate = datetime.datetime.now(tz=pytz.timezone("Europe/Madrid"))
-    delta = nDate - since
-    diff = formatTimeDelta(delta)
-    todayTasks = f'{tags} | {diff}'
+try:
+    if len(openIntervals) > 0:
+        openInterval = openIntervals[0]
+        tags = ",".join(openInterval.get_tags())
+        since = openInterval.get_start()
+        nDate = datetime.datetime.now(tz=pytz.timezone("Europe/Madrid"))
+        lastDuration = nDate - since
+        diff = formatTimeDelta(lastDuration)
+        todayTasks = f'🗓 {tags} | {diff}'
+except:
+    todayTasks = "🔥 errored"
 
-def isOpenAndToday(interval):
-    return (not interval.is_open()) and interval.get_start().date() == datetime.date.today()
+try:
+    todayIntervals = filter(isOpenAndToday, intervals)
+    durations = map(lambda f: f.get_duration(),todayIntervals)
+    todayTasks = f'{todayTasks} | {formatTimeDelta(lastDuration + sum(durations,datetime.timedelta()))}'
+except:
+    todayTasks = "🔥 errored"
 
-
-todayIntervals = filter(isOpenAndToday, intervals)
-durations = map(lambda f: f.get_duration(),todayIntervals)
-totalDuration = formatTimeDelta(sum(durations,datetime.timedelta()))
-
-print(f'{todayTasks} | {totalDuration}')
+print(todayTasks)
