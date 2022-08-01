@@ -28,13 +28,13 @@ try:
         diff = formatTimeDelta(lastDuration)
         todayTasks = f'🗓 {tags} | {diff}'
 except:
-    todayTasks = "🔥 errored"
+    pass #todayTasks = "🔥 errored"
 
 try:
     todayIntervals = filter(isOpenAndToday, intervals)
     durations = map(lambda f: f.get_duration(),todayIntervals)
     todayTasks = f'{todayTasks} | {formatTimeDelta(lastDuration + sum(durations,datetime.timedelta()))}'
 except:
-    todayTasks = "🔥 errored"
+    pass #todayTasks = "🔥 errored"
 
 print(todayTasks)
