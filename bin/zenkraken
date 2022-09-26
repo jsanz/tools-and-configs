@@ -18,11 +18,11 @@ trades )
       | csvsort -c time -r \
       | head -n5 \
       | csvtomd \
-      |  zenity --text-info --font monospace --height 250 --width 900
+      |  zenity --text-info --font monospace --height 250 --width 1300
   ;;
 
 orders )
-  clikraken --csv olist | csvtomd -d ";"| zenity --text-info --font monospace --height 200 --width 1100
+  clikraken --csv olist | csvtomd -d ";"| zenity --text-info --font monospace --height 200 --width 1300
   ;;
 
 tickers )
