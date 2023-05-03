@@ -9,7 +9,7 @@ gdbus monitor -y -d org.freedesktop.login1 | ( while true; do read X;
 			if [ "$isLocked" == "true" ]; then 
 				echo "Stopping timew"
 				timew stop
-			elif [ "$isLocked" == "false" ]; then
+			elif [ "$isLocked" == "false" ] && [ ! -f /tmp/notwlisten ]; then
 				echo "Continuing timew" 
 				timew continue @1
 			else 
