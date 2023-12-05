@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+set -e
+
+echo -e "Images\n======================"
+docker image list --all --format "table {{.Repository}}\t{{.Tag}}\t{{.CreatedSince}}\t{{.VirtualSize}}"
+
+
+echo -e "\nContainers\n======================"
+docker container list --all --format "table {{.ID}}\t{{.Names}}\t{{.RunningFor}}\t{{.Status}}"
+
+echo -e "\nVolumes\n======================"
+docker volume list
+
+echo -e "\nNetworks\n======================"
+docker network list
+
