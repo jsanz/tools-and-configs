@@ -1,13 +1,12 @@
 configuration {
-    font: "Envy Code R 18";
-    line-margin: 10;
-
+    font: "Fira Code 35";
     display-ssh:    "";
-    display-run:    "";
+    display-run:    "💻";
     display-drun:   "";
-    display-window: "";
+    display-window: "🪟";
     display-combi:  "";
     show-icons:     true;
+    modi:           [window,run,ssh,combi];
 }
 
 
@@ -19,6 +18,6 @@ listview {
 }
 
 window {
-	width: 30%;
+	width: 50%;
 }
 
