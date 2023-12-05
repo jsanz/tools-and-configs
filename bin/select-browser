@@ -1,0 +1,27 @@
+#!/bin/sh
+
+SELECTION=$(zenity --info --title='Open With' \
+	--text="Select the browser" \
+	--ok-label="Cancel" \
+	--extra-button="📊 ELASTIC" \
+	--extra-button="🏠 PERSONAL" \
+	--extra-button="🦁 BRAVE")
+
+case $SELECTION in
+
+  "📊 ELASTIC")
+	BROWSER="firefox -P elastic"
+	;;
+  "🏠 PERSONAL")
+	BROWSER="firefox -P personal"
+	;;
+  "🦁 BRAVE")
+	BROWSER="brave-browser"
+    ;;
+
+  *)
+    firefox
+    ;;
+esac
+
+$BROWSER $* &
